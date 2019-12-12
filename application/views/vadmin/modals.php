@@ -1,4 +1,4 @@
-<form method="POST" action=<?= base_url("cadmin/admin/auth") ?>>
+<form method="POST" action=<?= base_url("cadmin/admin/deletelist") ?>>
     <!--MODAL START-->
     <div class="modal fade" id="displayModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -10,18 +10,18 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h7 class="modal-title" id="exampleModalLongTitle">Anda yakin akan menghapus record dengan ID <?php echo  $id; ?> ?<br></p>
-                        <h5><b> <?php echo  $nama_admin['nama']; ?> </b></h5>
+                    <h7 class="modal-title" id="exampleModalLongTitle">Upaya modifikasi record dengan ID <?php echo  $id; ?><br></p>
+                        <h5><b> <?php echo  $record_admin['nama']; ?> </b></h5>
                         <div class="form-group">
-                            <label>Password</label>
+                            <label>Autentikasi dibutuhkan</label>
                             <input type="password" class="form-control" name="auth_pass" id="auth_pass" placeholder="Masukan Password Super Admin" required />
                             <input type="hidden" name="id_record" id="id_record" value=<?php echo  $id; ?> />
                         </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <input type="submit" name="auth_confirm" class="btn btn-primary btn-user btn-block" value="Konfirmasi" />
+                    <input type="submit" name="auth_confirm" class="btn btn-danger btn-user" value="Konfirmasi" />
+                    <button type="button" class="btn btn-secondary  btn-block" data-dismiss="modal">Batal</button>
                 </div>
             </div>
         </div>
