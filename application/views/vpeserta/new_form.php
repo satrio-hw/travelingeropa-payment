@@ -197,8 +197,8 @@
                                 <label for="status_tiket">Status Tiket</label>
                                 <select name="status_tiket" class="form-control <?php echo form_error('status_tiket') ? 'is-invalid' : '' ?>">
                                     <option value="">--Pilih--</option>
-                                    <option value="Status Tiket">Status Tiket</option>
-                                    <option value="Include">Include</option>
+                                    <option value="Inlcude">Include</option>
+                                    <option value="Tidak Include">Tidak Include</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     <?php echo form_error('status_tiket') ?>
