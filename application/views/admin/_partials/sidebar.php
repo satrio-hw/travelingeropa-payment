@@ -12,27 +12,27 @@
 
     <!-- Nav Item - Manajemen pembayarn -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="<?= base_url('cadmin/admin'); ?>">
             <i class="fas fa-file-invoice-dollar"></i>
             <span>Data Pembayaran</span></a>
     </li>
 
     <!-- Nav Item - Manajemen paket -->
-    <li class="nav-item active">
+    <li class="nav-item">
         <a class="nav-link" href="index.html">
             <i class="fas fa-cube"></i>
             <span>Paket</span></a>
     </li>
 
     <!-- Nav Item - Manajemen data peserta -->
-    <li class="nav-item active">
+    <li class="nav-item">
         <a class="nav-link" href="index.html">
             <i class="fas fa-users"></i>
             <span>List Peserta</span></a>
     </li>
 
     <!-- Nav Item - Manajemen data admin -->
-    <li class="nav-item active">
+    <li class="nav-item">
         <a class="nav-link" href="index.html">
             <i class="fas fa-id-badge"></i>
             <span>Manag. Admin</span></a>

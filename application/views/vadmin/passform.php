@@ -31,55 +31,38 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Pendaftaran Admin</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Konfigurasi Password: <?= $email; ?></h1> <?= $this->session->flashdata('message'); ?>
+                    <form method="POST" action=<?= base_url("cadmin/admin/form") ?>>
+                                <div align="right">
+                                    <button type="submit" name="submit" class="btn btn-danger btn-user btn-sm">
+                                    Reset password via Email
+                                    </button>
+                                </div>
+                            </form>
                     <!-- DataTales Example -->
-                    <form method="post" action=<?= base_url("cadmin/admin/regisadmin") ?>>
+                    <form method="post" action=<?= base_url("cadmin/admin/change_pass") ?>>
                         <div class="slider-content">
                             <!-- Inner row 1 -->
                             <div class="row">
-                                <div class="col-md-6">
-                                    <!-- layer 2 -->
-                                    <div class="layer-0-2 wow slideInUp">
-                                        <div class="form-group">
-                                            <label><b>Nama</b></label>
-                                            <input type="text" class="form-control" name="namaadmin" id="namaadmin" placeholder="Masukan Nama Admin" required />
-                                            <?= form_error('namaadmin', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                        <div class="form-group">
-                                            <label><b>Email</b></label>
-                                            <input type="email" class="form-control" name="emailadmin" id="emailadmin" placeholder="Masukan Email Admin" required />
-                                            <?= form_error('emailadmin', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                        <div class="form-group">
-                                            <label><b>Alamat</b></label>
-                                            <input type="alamat" class="form-control" name="alamatadmin" id="alamatadmin" maxlength=120 placeholder="Masukan Alamat Admin" required />
-                                        </div>
-                                        <div class="form-group">
-                                            <label><b>No. Telp</b></label>
-                                            <input type="tel" data-rule-mobileUK="true" class="form-control" name="tlpadmin" id="tlpadmin" maxlength=12 minlength=12 placeholder="Masukan no. tlp admin" required />
-                                            <?= form_error('tlpadmin', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                        <div class="form-group">
-                                            <label><b>Role</b></label>
-                                            <select class="form-control" name="role" id="role" required>
-                                                <option value="adm">Admin</option>
-                                                <option value="spadm">Super Admin</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
-                                        <label><b>Password</b></label>
+                                        <label><b>Password Lama</b></label>
+                                        <input type="password" class="form-control" name="passwordold" id="passwordold" placeholder="Masukan Password Lama" required />
+                                        <?= form_error('password0', '<small class="text-danger pl-3">', '</small>'); ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><b>Password Baru</b></label>
                                         <input type="password" class="form-control" name="password1" id="password1" placeholder="Masukan Password" required />
                                         <?= form_error('password1', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                     <div class="form-group">
-                                        <label><b>Konfirmasi Password</b></label>
+                                        <label><b>Konfirmasi Password Baru</b></label>
                                         <input type="password" class="form-control" name="password2" id="password2" placeholder="Ketikan password kembali" required />
+                                        <?= form_error('password2', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                     <div class="form-group">
-                                        <input type="submit" name="submit" class="btn btn-primary btn-user btn-block" value="Daftar Sekarang" />
+                                        <input type="hidden" name="email_record" value="<?= $email ?>" />
+                                        <input type="submit" name="submit1" class="btn btn-primary btn-user" value="Ubah Password" />
                                     </div>
                                 </div>
                             </div>

@@ -59,7 +59,7 @@
 
                 <!-- Topbar -->
                 <?php $this->load->view("admin/_partials/navbar.php")  ?>
-
+                <!-- End of Topbar -->
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
@@ -88,9 +88,6 @@
                                     <thead bgcolor="#4655f2">
 
                                         <tr>
-                                            <th class="col-md-0.5">
-                                                <font color="white">ID</font>
-                                            </th>
                                             <th class="col-md-2">
                                                 <font color="white">Nama</font>
                                             </th>
@@ -116,7 +113,6 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>ID</th>
                                             <th>Nama</th>
                                             <th>Email</th>
                                             <th>No. Tlp</th>
@@ -132,7 +128,6 @@
                                         foreach ($admins as $record) :
                                             ?>
                                             <tr>
-                                                <td><?php echo  $record['id_admin']; ?></td>
                                                 <td><?php echo  $record['nama']; ?></td>
                                                 <td><?php echo  $record['email']; ?></td>
                                                 <td><?php echo  $record['notlp']; ?></td>
@@ -144,8 +139,8 @@
 
                                                 <td>
                                                     <div align="center">
-                                                        <a href="<?= base_url('cadmin/admin/editlist') ?>?id=<?= $record['id_admin'] ?>" class="btn btn-primary btn-user"><i class="fas fa-edit fa-sm"></i></a>
-                                                        <a href="<?= base_url('cadmin/admin/deletelist') ?>?id=<?= $record['id_admin'] ?>" class="btn btn-danger btn-user"><i class="fas fa-trash-alt fa-sm"></i></a>
+                                                        <a href="<?= base_url('cadmin/admin/editlist') ?>?id=<?= base64_encode($record['email']); ?>" class="btn btn-primary btn-user"><i class="fas fa-edit fa-sm"></i></a>
+                                                        <a href="<?= base_url('cadmin/admin/deletelist') ?>?id=<?= base64_encode($record['email']); ?>" class="btn btn-danger btn-user"><i class="fas fa-trash-alt fa-sm"></i></a>
                                                         <?php
                                                             if (isset($record_todo)) {
                                                                 $this->load->view("vadmin/modals.php", $record_todo);

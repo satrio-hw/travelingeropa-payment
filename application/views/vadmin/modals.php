@@ -10,12 +10,12 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h7 class="modal-title" id="exampleModalLongTitle">Upaya modifikasi record dengan ID <?php echo  $id; ?><br></p>
+                    <h7 class="modal-title" id="exampleModalLongTitle">Upaya menghapus record dengan email <?php echo  $email; ?><br></p>
                         <h5><b> <?php echo  $record_admin['nama']; ?> </b></h5>
                         <div class="form-group">
                             <label>Autentikasi dibutuhkan</label>
                             <input type="password" class="form-control" name="auth_pass" id="auth_pass" placeholder="Masukan Password Super Admin" required />
-                            <input type="hidden" name="id_record" id="id_record" value=<?php echo  $id; ?> />
+                            <input type="hidden" name="email_record" id="email_record" value=<?php echo  $email; ?> />
                         </div>
 
                 </div>
