@@ -17,6 +17,7 @@ class admin extends CI_Controller
         ];
         //sebagai testing, session predivined
         $this->session->set_userdata('email', 'sa1@te.com');
+        $this->session->set_userdata('role', 'spadm');
         // load view vadmin
         $this->load->view("vadmin/table", $data);
     }
@@ -87,13 +88,10 @@ class admin extends CI_Controller
     // Edit admin pada tabel
     public function editlist()
     {
-
         $the_user = $this->session->userdata('email');
         if (isset($_POST['submit'])) {
+
             $this->form_validation->set_rules('namaadmin', 'Nama Admin', 'required|trim');
-            $this->form_validation->set_rules('emailadmin', 'Email Admin', 'required|trim|valid_email|is_unique[admin.email]', [
-                'is_unique' => 'Email sudah terdaftar'
-            ]);
             $this->form_validation->set_rules('role', 'Role Admin', 'required|trim');
             $this->form_validation->set_rules('alamatadmin', 'Alamat Admin', 'required|max_length[120]|trim');
             $this->form_validation->set_rules('tlpadmin', 'No. Tlp. Admin', 'required|trim|numeric|max_length[12]|min_length[12]', [
@@ -101,13 +99,27 @@ class admin extends CI_Controller
                 'min_length' => 'masukan 12 digit no. tlp'
             ]);
 
-            $data1 = [
-                'nama' => htmlspecialchars($this->input->post('namaadmin', true)),
-                'email' => htmlspecialchars($this->input->post('emailadmin', true)),
-                'role' => $this->input->post('role'),
-                'alamat' => $this->input->post('alamatadmin'),
-                'notlp' => $this->input->post('tlpadmin')
-            ];
+            if ($this->input->post('emailadmin')) {
+                $this->form_validation->set_rules('emailadmin', 'Email Admin', 'trim|valid_email|is_unique[admin.email]', [
+                    'is_unique' => 'Email sudah terdaftar'
+                ]);
+                $data1 = [
+                    'nama' => htmlspecialchars($this->input->post('namaadmin', true)),
+                    'email' => htmlspecialchars($this->input->post('emailadmin', true)),
+                    'role' => $this->input->post('role'),
+                    'alamat' => $this->input->post('alamatadmin'),
+                    'notlp' => $this->input->post('tlpadmin')
+                ];
+            } else {
+                $data1 = [
+                    'nama' => htmlspecialchars($this->input->post('namaadmin', true)),
+                    'role' => $this->input->post('role'),
+                    'email' => $this->session->userdata('email_value'),
+                    'alamat' => $this->input->post('alamatadmin'),
+                    'notlp' => $this->input->post('tlpadmin')
+                ];
+            }
+
             if ($this->form_validation->run() == false) {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Input salah, cek kembali data yang dimasukan</div>');
                 $this->load->view("vadmin/editform", $data1);
@@ -125,8 +137,9 @@ class admin extends CI_Controller
             }
         } else {
             $decrypt_email = base64_decode($_GET['id']);
+            $this->session->set_userdata('email_value', $decrypt_email);
 
-            if (($the_user == $this->admin_model->getAdminByEmail($decrypt_email)) || ($this->admin_model->getAdminByEmail($the_user)['role'] == "spadm")) {
+            if (($the_user == $this->admin_model->getAdminByEmail($decrypt_email)['email']) || ($this->admin_model->getAdminByEmail($the_user)['role'] == "spadm")) {
                 $data = [
                     'nama' => $this->admin_model->getAdminByEmail($decrypt_email)['nama'],
                     'email' => $this->admin_model->getAdminByEmail($decrypt_email)['email'],
@@ -136,6 +149,8 @@ class admin extends CI_Controller
                 ];
                 $this->load->view("vadmin/editform", $data);
             } else {
+                //echo $the_user;
+                //echo $this->admin_model->getAdminByEmail($the_user)['role'];
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Hak akses dilarang</div>');
                 redirect('cadmin/admin');
             }
@@ -183,7 +198,29 @@ class admin extends CI_Controller
     // Ubah password
     public function change_pass()
     {
-        if (isset($_POST['submit1'])) {
+        if (isset($_POST['reset_admin'])) {
+
+            $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[6]|matches[password2]', [
+                'matches' => 'password yang anda masukan tidak sama ',
+                'min_length' => 'password terlalu pendek'
+            ]);
+            $this->form_validation->set_rules('password2', 'Konfirmasi Password', 'required|min_length[6]|matches[password1]|trim', [
+                'matches' => 'password yang anda masukan tidak sama ',
+                'min_length' => 'password terlalu pendek'
+            ]);
+
+            if ($this->form_validation->run() == false) {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Kesalahan pada Input "Ubah Password"</div>');
+                redirect('cadmin/admin');
+            } else {
+                $add_newpass = password_hash($this->input->post('password1'), PASSWORD_DEFAULT);
+                $this->db->set('password', $add_newpass);
+                $this->db->where('email', $this->input->post('email_record'));
+                $this->db->update('admin');
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">password berhasil diubah oleh Super Admin</div>');
+                redirect('cadmin/admin');
+            }
+        } else if (isset($_POST['submit1'])) {
             if ($this->input->post('email_record') == $this->session->userdata('email')) {
                 $baseline_pass = $this->admin_model->getAdminByEmail($this->input->post('email_record'))['password'];
                 $inserted_pass = $this->input->post('passwordold');
@@ -201,10 +238,10 @@ class admin extends CI_Controller
                     ]);
 
                     if ($this->form_validation->run() == false) {
-                        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Kesalahan pada sistem terdeteksi (cadmin/admin, line 48)</div>');
+                        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Kesalahan Input</div>');
                         redirect('cadmin/admin');
                     } else {
-                        $add_newpass = password_hash($this->input->post('password0'), PASSWORD_DEFAULT);
+                        $add_newpass = password_hash($this->input->post('password1'), PASSWORD_DEFAULT);
                         $this->db->set('password', $add_newpass);
                         $this->db->where('email', $this->input->post('email_record'));
                         $this->db->update('admin');

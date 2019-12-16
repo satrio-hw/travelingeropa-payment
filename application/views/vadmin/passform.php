@@ -32,32 +32,31 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Konfigurasi Password: <?= $email; ?></h1> <?= $this->session->flashdata('message'); ?>
-                    <form method="POST" action=<?= base_url("cadmin/admin/form") ?>>
-                                <div align="right">
-                                    <button type="submit" name="submit" class="btn btn-danger btn-user btn-sm">
-                                    Reset password via Email
-                                    </button>
-                                </div>
-                            </form>
+                    <?php
+                                                                                                if ($this->session->userdata('role') == 'spadm') : ?>
+                        <form method="POST" action=<?= base_url("cadmin/admin/change_pass") ?>>
+                            <div align="right">
+                                <input type="submit" name="reset_admin" class="btn btn-danger btn-user btn-sm" value="Reset password as Super Admin" />
+                            </div>
+                    <?php endif; ?>
                     <!-- DataTales Example -->
-                    <form method="post" action=<?= base_url("cadmin/admin/change_pass") ?>>
                         <div class="slider-content">
                             <!-- Inner row 1 -->
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label><b>Password Lama</b></label>
-                                        <input type="password" class="form-control" name="passwordold" id="passwordold" placeholder="Masukan Password Lama" required />
+                                        <input type="password" class="form-control" name="passwordold" id="passwordold" placeholder="Masukan Password Lama" />
                                         <?= form_error('password0', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                     <div class="form-group">
                                         <label><b>Password Baru</b></label>
-                                        <input type="password" class="form-control" name="password1" id="password1" placeholder="Masukan Password" required />
+                                        <input type="password" class="form-control" name="password1" id="password1" placeholder="Masukan Password" required/>
                                         <?= form_error('password1', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                     <div class="form-group">
                                         <label><b>Konfirmasi Password Baru</b></label>
-                                        <input type="password" class="form-control" name="password2" id="password2" placeholder="Ketikan password kembali" required />
+                                        <input type="password" class="form-control" name="password2" id="password2" placeholder="Ketikan password kembali" required/>
                                         <?= form_error('password2', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                     <div class="form-group">

@@ -50,7 +50,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label><b>Email</b></label>
-                                            <input type="email" class="form-control" name="emailadmin" id="emailadmin" placeholder="email dipakai: <?= $email ?>" required />
+                                            <input type="email" class="form-control" name="emailadmin" id="emailadmin" placeholder="<?= $email ?>" />
                                             <?= form_error('emailadmin', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="form-group">
@@ -79,9 +79,9 @@
                     <form method="post" action=<?= base_url("cadmin/admin/change_pass") ?>>
                         <input type="hidden" name="email_record" id="email_record" value=<?= $email; ?> />
                         <div align="right">
-                        <button type="submit" name="submit" class="btn btn-secondary btn-user btn-sm"><i class="fas fa-key"></i>
-                            <h7> Ubah Password</h7>
-                        </button>
+                            <button type="submit" name="submit" class="btn btn-secondary btn-user btn-sm"><i class="fas fa-key"></i>
+                                <h7> Ubah Password</h7>
+                            </button>
                         </div>
                     </form>
                 </div>
