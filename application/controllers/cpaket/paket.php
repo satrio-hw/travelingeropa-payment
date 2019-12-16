@@ -1,6 +1,6 @@
 <?php
 
-class Peserta extends CI_Controller
+class Paket extends CI_Controller
 {
     public function __construct()
     {
