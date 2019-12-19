@@ -150,9 +150,8 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Edit Data</h1>
-
-                    <form action="<?php base_url('cpaket/paket/edit') ?>" method="post" enctype="multipart/form-data">
+                    <h1 class="h3 mb-2 text-gray-800">Tambah Data</h1>
+                    <form action="<?php base_url('cpaket/paket/add') ?>" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="id" value="<?php echo $paket->id_paket ?>" />
 
                         <div class="row">

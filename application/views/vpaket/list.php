@@ -150,85 +150,75 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Edit Data</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Table Peserta</h1>
+                    <?php if ($this->session->flashdata('success')) : ?>
+                        <div class="alert alert-success" role="alert">
+                            <?php echo $this->session->flashdata('success'); ?>
+                        </div>
+                    <?php endif; ?>
 
-                    <form action="<?php base_url('cpaket/paket/edit') ?>" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="id" value="<?php echo $paket->id_paket ?>" />
-
-                        <div class="row">
-                            <div class="col">
-                                <label for="nama">Nama Paket</label>
-                                <input class="form-control <?php echo form_error('nama') ? 'is-invalid' : '' ?>" value="<?php echo $paket->nama ?>" type="text" name="nama" placeholder="Nama" />
-                                <div class="invalid-feedback">
-                                    <?php echo form_error('nama') ?>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <label for="harga">Harga </label>
-                                <input class="form-control <?php echo form_error('harga') ? 'is-invalid' : '' ?>" value="<?php echo $paket->harga ?>" type="number" name="harga" placeholder="Harga" />
-                                <div class="invalid-feedback">
-                                    <?php echo form_error('harga') ?>
-                                </div>
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <a href="<?php echo site_url('cpaket/paket/add') ?>"><i class="fas fa-plus"></i> Add New</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Nama Paket</th>
+                                            <th>Harga</th>
+                                            <th>Harga In Landtour</th>
+                                            <th>Upgrade Kamar</th>
+                                            <th>Keterangan Tambahan</th>
+                                            <th>Visa</th>
+                                            <th>Asuransi</th>
+                                            <th>Simcard</th>
+                                            <th>Upgrade Bagasi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($paket as $paket2) : ?>
+                                            <tr>
+                                                <td>
+                                                    <?= $paket2->nama ?>
+                                                </td>
+                                                <td>
+                                                    <?= $paket2->harga?>
+                                                </td>
+                                                <td>
+                                                    <?= $paket2->harga_in_landtour ?>
+                                                </td>
+                                                <td>
+                                                    <?= $paket2->upgrade_kamar ?>
+                                                </td>
+                                                <td>
+                                                    <?= $paket2->keterangan_tambahan ?>
+                                                </td>
+                                                <td>
+                                                    <?= $paket2->visa ?>
+                                                </td>
+                                                <td>
+                                                    <?= $paket2->asuransi ?>
+                                                </td>
+                                                <td>
+                                                    <?= $paket2->simcard ?>
+                                                </td>
+                                                <td>
+                                                    <?= $paket2->upgrade_bagasi ?>
+                                                </td>
+                                                <td>
+                                                    <a href="<?php echo site_url('cpaket/paket/edit/' . $paket2->id_paket) ?>" class="btn btn-small"><i class="fas fa-edit"></i> Edit</a>
+                                                    <a onclick="deleteConfirm('<?php echo site_url('cpaket/paket/delete/' . $paket2->id_peserta) ?>')" href="#!" class="btn btn-small text-danger"><i class="fas fa-trash"></i> Hapus</a>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <label for="harga_in_landtour">Harga In Landtour</label>
-                                <input class="form-control <?php echo form_error('harga_in_landtour') ? 'is-invalid' : '' ?>" value="<?php echo $paket->harga_in_landtour ?>" type="number" name="harga_in_landtour" placeholder="Harga in landtour" />
-                                <div class="invalid-feedback">
-                                    <?php echo form_error('harga_in_landtour') ?>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <label for="upgrade_kamar">Upgrade Kamar</label>
-                                <input class="form-control <?php echo form_error('upgrade_kamar') ? 'is-invalid' : '' ?>" value="<?php echo $paket->upgrade_kamar ?>" type="number" name="upgrade_kamar" placeholder="Upgrade Kamar" />
-                                <div class="invalid-feedback">
-                                    <?php echo form_error('upgrade_kamar') ?>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <label for="keterangan_tambahan">Keterangan Tambahan</label>
-                                <input class="form-control <?php echo form_error('keterangan_tambahan') ? 'is-invalid' : '' ?>" value="<?php echo $paket->keterangan_tambahan ?>" type="text" name="keterangan_tambahan" placeholder="Keterangan Tambahan" />
-                                <div class="invalid-feedback">
-                                    <?php echo form_error('keterangan_tambahan') ?>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <label for="visa">Visa</label>
-                                <select name="visa" class="form-control <?php echo form_error('visa') ? 'is-invalid' : '' ?>" value="<?php echo $paket->visa ?>" type ="number" name="visa" placeholder="visa"/>
-                                <div class="invalid-feedback">
-                                    <?php echo form_error('visa') ?>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <label for="asuransi">Asuransi</label>
-                                <input class="form-control <?php echo form_error('asuransi') ? 'is-invalid' : '' ?>" value="<?php echo $paket->asuransi ?>" type="number" name="asuransi" placeholder="Asuransi" />
-                                <div class="invalid-feedback">
-                                    <?php echo form_error('asuransi') ?>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <label for="simcard">Simcard</label>
-                                <input class="form-control <?php echo form_error('simcard') ? 'is-invalid' : '' ?>" value="<?php echo $paket->simcard ?>" type="number" name="simcard" placeholder="Simcard" />
-                                <div class="invalid-feedback">
-                                    <?php echo form_error('simcard') ?>
-                                </div>
-                            </div>
-                        <div class="row">
-                            <div class="col">
-                                <label for="upgrade_bagasi">Upgrade Bagasi</label>
-                                <input class="form-control <?php echo form_error('upgrade_bagasi') ? 'is-invalid' : '' ?>" value="<?php echo $paket->upgrade_bagasi ?>" type="number" name="upgrade_bagasi" placeholder="Upgrade Bagasi" />
-                                <div class="invalid-feedback">
-                                    <?php echo form_error('upgrade Bagasi') ?>
-                                </div>
-                            </div>
-                        </div><br>
-                        <input class="btn btn-primary" type="submit" name="btn" value="Save" />
-                    </form>
+                    </div>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -271,9 +261,34 @@
         </div>
     </div>
 
+    <!-- Logout Delete Confirmation-->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Data yang dihapus tidak akan bisa dikembalikan.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a id="btn-delete" class="btn btn-danger" href="#">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap core JavaScript-->
 
     <?php $this->load->view("admin/_partials/js.php")  ?>
+    <script>
+        function deleteConfirm(url) {
+            $('#btn-delete').attr('href', url);
+            $('#deleteModal').modal();
+        }
+    </script>
 
 </body>
 
