@@ -210,7 +210,7 @@
                                                 </td>
                                                 <td>
                                                     <a href="<?php echo site_url('cpaket/paket/edit/' . $paket2->id_paket) ?>" class="btn btn-small"><i class="fas fa-edit"></i> Edit</a>
-                                                    <a onclick="deleteConfirm('<?php echo site_url('cpaket/paket/delete/' . $paket2->id_peserta) ?>')" href="#!" class="btn btn-small text-danger"><i class="fas fa-trash"></i> Hapus</a>
+                                                    <a onclick="deleteConfirm('<?php echo site_url('cpaket/paket/delete/' . $paket2->id_paket) ?>')" href="#!" class="btn btn-small text-danger"><i class="fas fa-trash"></i> Hapus</a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>

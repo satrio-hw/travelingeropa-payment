@@ -21,7 +21,7 @@ class Paket extends CI_Controller
         $validation = $this->form_validation;
         $validation->set_rules($paket->rules());
 
-        if ($validation->run()) {
+        if ($validation->run() == true) {
             $paket->save();
             $this->session->set_flashdata('success', 'Berhasil disimpan');
             redirect(site_url('cpaket/paket'));

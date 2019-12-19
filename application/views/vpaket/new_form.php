@@ -151,82 +151,94 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Tambah Data</h1>
-                    <form action="<?php base_url('cpaket/paket/add') ?>" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="id" value="<?php echo $paket->id_paket ?>" />
+                    <form action="<?php site_url('cpaket/paket/add') ?>" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="id" />
 
-                        <div class="row">
-                            <div class="col">
-                                <label for="nama">Nama Paket</label>
-                                <input class="form-control <?php echo form_error('nama') ? 'is-invalid' : '' ?>" value="<?php echo $paket->nama ?>" type="text" name="nama" placeholder="Nama" />
-                                <div class="invalid-feedback">
-                                    <?php echo form_error('nama') ?>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <label for="harga">Harga </label>
-                                <input class="form-control <?php echo form_error('harga') ? 'is-invalid' : '' ?>" value="<?php echo $paket->harga ?>" type="number" name="harga" placeholder="Harga" />
-                                <div class="invalid-feedback">
-                                    <?php echo form_error('harga') ?>
-                                </div>
+                        <div class="col">
+                            <label for="nama">Nama Paket</label>
+                            <input class="form-control <?php echo form_error('nama') ? 'is-invalid' : '' ?>"  type="text" name="nama" placeholder="Nama" />
+                            <div class="invalid-feedback">
+                                <?php echo form_error('nama') ?>
+                                   </div>
+                        </div>
+                        <div class="col">
+                            <label for="harga">Harga </label>
+                            <input class="form-control <?php echo form_error('harga') ? 'is-invalid' : '' ?>"  type="number" name="harga" placeholder="Harga" />
+                            <div class="invalid-feedback">
+                                <?php echo form_error('harga') ?>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <label for="harga_in_landtour">Harga In Landtour</label>
-                                <input class="form-control <?php echo form_error('harga_in_landtour') ? 'is-invalid' : '' ?>" value="<?php echo $paket->harga_in_landtour ?>" type="number" name="harga_in_landtour" placeholder="Harga in landtour" />
-                                <div class="invalid-feedback">
-                                    <?php echo form_error('harga_in_landtour') ?>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <label for="upgrade_kamar">Upgrade Kamar</label>
-                                <input class="form-control <?php echo form_error('upgrade_kamar') ? 'is-invalid' : '' ?>" value="<?php echo $paket->upgrade_kamar ?>" type="number" name="upgrade_kamar" placeholder="Upgrade Kamar" />
-                                <div class="invalid-feedback">
-                                    <?php echo form_error('upgrade_kamar') ?>
-                                </div>
+                        <div class="col">
+                            <label for="harga_in_landtour">Harga In Landtour</label>
+                            <input class="form-control <?php echo form_error('harga_in_landtour') ? 'is-invalid' : '' ?>"  type="number" name="harga_in_landtour" placeholder="Harga in landtour" />
+                            <div class="invalid-feedback">
+                                <?php echo form_error('harga_in_landtour') ?>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <label for="keterangan_tambahan">Keterangan Tambahan</label>
-                                <input class="form-control <?php echo form_error('keterangan_tambahan') ? 'is-invalid' : '' ?>" value="<?php echo $paket->keterangan_tambahan ?>" type="text" name="keterangan_tambahan" placeholder="Keterangan Tambahan" />
-                                <div class="invalid-feedback">
-                                    <?php echo form_error('keterangan_tambahan') ?>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <label for="visa">Visa</label>
-                                <select name="visa" class="form-control <?php echo form_error('visa') ? 'is-invalid' : '' ?>" value="<?php echo $paket->visa ?>" type ="number" name="visa" placeholder="visa"/>
-                                <div class="invalid-feedback">
-                                    <?php echo form_error('visa') ?>
-                                </div>
+                        <div class="col">
+                            <label for="upgrade_kamar">Upgrade Kamar</label>
+                            <select name="upgrade_kamar" class="form-control <?php echo form_error('upgrade_kamar') ? 'is-invalid' : '' ?>">
+                                <option value="">--Pilih--</option>
+                                <option value="Ya">Ya</option>
+                                <option value="Tidak">Tidak</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                <?php echo form_error('upgrade_kamar') ?>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <label for="asuransi">Asuransi</label>
-                                <input class="form-control <?php echo form_error('asuransi') ? 'is-invalid' : '' ?>" value="<?php echo $paket->asuransi ?>" type="number" name="asuransi" placeholder="Asuransi" />
-                                <div class="invalid-feedback">
-                                    <?php echo form_error('asuransi') ?>
-                                </div>
+                        <div class="col">
+                            <label for="keterangan_tambahan">Keterangan Tambahan</label>
+                            <input class="form-control <?php echo form_error('keterangan_tambahan') ? 'is-invalid' : '' ?>"  type="text" name="keterangan_tambahan" placeholder="Keterangan Tambahan" />
+                            <div class="invalid-feedback">
+                                <?php echo form_error('keterangan_tambahan') ?>
                             </div>
-                            <div class="col">
-                                <label for="simcard">Simcard</label>
-                                <input class="form-control <?php echo form_error('simcard') ? 'is-invalid' : '' ?>" value="<?php echo $paket->simcard ?>" type="number" name="simcard" placeholder="Simcard" />
-                                <div class="invalid-feedback">
-                                    <?php echo form_error('simcard') ?>
-                                </div>
+                        </div>
+                        <div class="col">
+                            <label for="visa">Visa</label>
+                            <select name="visa" class="form-control <?php echo form_error('visa') ? 'is-invalid' : '' ?>">
+                                <option value="">--Pilih--</option>
+                                <option value="Ya">Ya</option>
+                                <option value="Tidak">Tidak</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                <?php echo form_error('visa') ?>
                             </div>
-                        <div class="row">
-                            <div class="col">
-                                <label for="upgrade_bagasi">Upgrade Bagasi</label>
-                                <input class="form-control <?php echo form_error('upgrade_bagasi') ? 'is-invalid' : '' ?>" value="<?php echo $paket->upgrade_bagasi ?>" type="number" name="upgrade_bagasi" placeholder="Upgrade Bagasi" />
-                                <div class="invalid-feedback">
-                                    <?php echo form_error('upgrade Bagasi') ?>
-                                </div>
+                        </div>
+                        <div class="col">
+                            <label for="asuransi">Asuransi</label>
+                            <select name="asuransi" class="form-control <?php echo form_error('asuransi') ? 'is-invalid' : '' ?>">
+                                <option value="">--Pilih--</option>
+                                <option value="Ya">Ya</option>
+                                <option value="Tidak">Tidak</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                <?php echo form_error('asuransi') ?>
                             </div>
-                        </div><br>
-                        <input class="btn btn-primary" type="submit" name="btn" value="Save" />
+                        </div>
+                        <div class="col">
+                            <label for="simcard">Simcard</label>
+                            <select name="simcard" class="form-control <?php echo form_error('simcard') ? 'is-invalid' : '' ?>">
+                                <option value="">--Pilih--</option>
+                                <option value="Ya">Ya</option>
+                                <option value="Tidak">Tidak</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                <?php echo form_error('simcard') ?>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label for="upgrade_bagasi">Upgrade Bagasi</label>
+                            <select name="upgrade_bagasi" class="form-control <?php echo form_error('upgrade_bagasi') ? 'is-invalid' : '' ?>">
+                                <option value="">--Pilih--</option>
+                                <option value="Ya">Ya</option>
+                                <option value="Tidak">Tidak</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                <?php echo form_error('upgrade bagasi') ?>
+                            </div>
+                        </div>
+                        <br>
+                        <button class="btn btn-primary" type="submit">Save</button> 
                     </form>
 
                 </div>
