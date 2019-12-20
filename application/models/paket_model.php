@@ -19,11 +19,6 @@ class paket_model extends CI_Model
     public function rules()
     {
         return [
-            [
-                'field' => 'id_paket',
-                'label' => 'Id_paket',
-                'rules' => 'required'
-            ],
 
             [
                 'field' => 'nama',

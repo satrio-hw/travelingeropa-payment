@@ -156,21 +156,21 @@
 
                         <div class="col">
                             <label for="nama">Nama Paket</label>
-                            <input class="form-control <?php echo form_error('nama') ? 'is-invalid' : '' ?>"  type="text" name="nama" placeholder="Nama" />
+                            <input class="form-control <?php echo form_error('nama') ? 'is-invalid' : '' ?>" type="text" name="nama" placeholder="Nama" />
                             <div class="invalid-feedback">
                                 <?php echo form_error('nama') ?>
-                                   </div>
+                            </div>
                         </div>
                         <div class="col">
                             <label for="harga">Harga </label>
-                            <input class="form-control <?php echo form_error('harga') ? 'is-invalid' : '' ?>"  type="number" name="harga" placeholder="Harga" />
+                            <input class="form-control <?php echo form_error('harga') ? 'is-invalid' : '' ?>" type="number" name="harga" placeholder="Harga" />
                             <div class="invalid-feedback">
                                 <?php echo form_error('harga') ?>
                             </div>
                         </div>
                         <div class="col">
                             <label for="harga_in_landtour">Harga In Landtour</label>
-                            <input class="form-control <?php echo form_error('harga_in_landtour') ? 'is-invalid' : '' ?>"  type="number" name="harga_in_landtour" placeholder="Harga in landtour" />
+                            <input class="form-control <?php echo form_error('harga_in_landtour') ? 'is-invalid' : '' ?>" type="number" name="harga_in_landtour" placeholder="Harga in landtour" />
                             <div class="invalid-feedback">
                                 <?php echo form_error('harga_in_landtour') ?>
                             </div>
@@ -188,7 +188,7 @@
                         </div>
                         <div class="col">
                             <label for="keterangan_tambahan">Keterangan Tambahan</label>
-                            <input class="form-control <?php echo form_error('keterangan_tambahan') ? 'is-invalid' : '' ?>"  type="text" name="keterangan_tambahan" placeholder="Keterangan Tambahan" />
+                            <input class="form-control <?php echo form_error('keterangan_tambahan') ? 'is-invalid' : '' ?>" type="text" name="keterangan_tambahan" placeholder="Keterangan Tambahan" />
                             <div class="invalid-feedback">
                                 <?php echo form_error('keterangan_tambahan') ?>
                             </div>
@@ -238,7 +238,7 @@
                             </div>
                         </div>
                         <br>
-                        <button class="btn btn-primary" type="submit">Save</button> 
+                        <input class="btn btn-primary" type="submit" name="btn" value="Save" />
                     </form>
 
                 </div>
