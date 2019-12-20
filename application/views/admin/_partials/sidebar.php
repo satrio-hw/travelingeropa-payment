@@ -25,8 +25,9 @@
     </li>
 
     <!-- Nav Item - Manajemen data peserta -->
-    <li class="nav-item">
-        <a class="nav-link" href="index.html">
+
+    <li class="nav-item active">
+        <a class="nav-link" href="<?php echo site_url('cpeserta/peserta') ?>">
             <i class="fas fa-users"></i>
             <span>List Peserta</span></a>
     </li>
