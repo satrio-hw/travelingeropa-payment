@@ -25,7 +25,7 @@ class mailer extends CI_Controller
 
         // SMTP configuration
         $mail->isSMTP();
-        $mail->Host     = 'travelingeropapay.com'; //sesuaikan sesuai nama domain hosting/server yang digunakan
+        $mail->Host     = '####'; //sesuaikan sesuai nama domain hosting/server yang digunakan
         $mail->SMTPAuth = true;
         $mail->Username = '#####'; // user email
         $mail->Password = '#####'; // password email
