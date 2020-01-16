@@ -78,6 +78,11 @@ class Peserta_model extends CI_Model
         return $this->db->get_where($this->_table, ["id_peserta" => $id])->row();
     }
 
+    public function getByIdOrder($id)
+    {
+        return $this->db->get_where($this->_table, ["id_order" => $id])->result();
+    }
+
     public function save()
     {
         $post = $this->input->post();

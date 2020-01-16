@@ -5,6 +5,7 @@ class Peserta extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('mjoin');
         $this->load->model('peserta_model');
         $this->load->library('form_validation');
 
@@ -16,8 +17,19 @@ class Peserta extends CI_Controller
 
     public function index()
     {
+
         $data["peserta"] = $this->peserta_model->getAll();
         $this->load->view("vpeserta/list", $data);
+    }
+
+    public function berorder()
+    {
+        $id = (int) $_GET['id'];
+
+        $data["peserta"] = $this->peserta_model->getByIdOrder($id);
+        $this->load->view("vpeserta/list", $data);
+        // $data["peserta"] = $this->peserta_model->getById($id);
+        // $this->load->view("vpeserta/list", $data);
     }
 
     public function add()

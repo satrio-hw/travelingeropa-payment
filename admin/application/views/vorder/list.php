@@ -24,6 +24,11 @@
         tr:hover {
             background-color: #c9d7f2;
         }
+
+        .liatpeserta,
+        .addnew {
+            text-align: right;
+        }
     </style>
 </head>
 
@@ -33,7 +38,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <?php $this->load->view("admin/_partials/sidebar.php", $id = ['sidebar' => 3]);  ?>
+        <?php $this->load->view("admin/_partials/sidebar.php", $id = ['sidebar' => 5]);  ?>
 
         <!-- End of Sidebar -->
 
@@ -51,7 +56,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Table Peserta</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Table Order</h1>
                     <?php if ($this->session->flashdata('success')) : ?>
                         <div class="alert alert-success" role="alert">
                             <?php echo $this->session->flashdata('success'); ?>
@@ -60,55 +65,37 @@
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <a href="<?php echo site_url('cpeserta/peserta/add') ?>"><i class="fas fa-plus"></i> Add New</a>
+                        <div class="card-header py-3 addnew">
+                            <a href="<?php echo site_url('corder/order/add') ?>"><i class="fas fa-user-plus"></i></a><br>
+                            <a href="<?= base_url('cpeserta/peserta'); ?>"><i class="fas fa-list"></i>Lihat Semua Peserta</a>
+                        </div>
+                        <div class="navbar-text">
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead bgcolor="#4655f2">
                                         <tr>
-                                            <th>Email Peserta</th>
-                                            <th>Nama</th>
-                                            <th>Tanggal Lahir</th>
-                                            <th>Nomor Passport</th>
-                                            <th>Expired Passport</th>
-                                            <th>Status Tiket</th>
-                                            <th>Nomor Hanphone</th>
-                                            <th>Domisili</th>
-                                            <th>Aksi</th>
+                                            <th>ID Order</th>
+                                            <th>Paket</th>
+                                            <th>Email Pemesan</th>
+                                            <th>Daftar Peserta</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($peserta as $pesertaa) : ?>
+                                        <?php foreach ($order as $ord) : ?>
                                             <tr>
                                                 <td>
-                                                    <?= $pesertaa->email_peserta ?>
+                                                    <?= $ord->id_order ?>
                                                 </td>
                                                 <td>
-                                                    <?= $pesertaa->nama ?>
+                                                    <?= $ord->nama_paket ?>
                                                 </td>
                                                 <td>
-                                                    <?= $pesertaa->tanggal_lahir ?>
+                                                    <?= $ord->email ?>
                                                 </td>
                                                 <td>
-                                                    <?= $pesertaa->no_passport ?>
-                                                </td>
-                                                <td>
-                                                    <?= $pesertaa->exp_passport ?>
-                                                </td>
-                                                <td>
-                                                    <?= $pesertaa->status_tiket ?>
-                                                </td>
-                                                <td>
-                                                    <?= $pesertaa->hp ?>
-                                                </td>
-                                                <td>
-                                                    <?= $pesertaa->domisili ?>
-                                                </td>
-                                                <td>
-                                                    <a href="<?php echo site_url('cpeserta/peserta/edit/' . $pesertaa->id_peserta) ?>" class="btn btn-small"><i class="fas fa-edit"></i> Edit</a>
-                                                    <a onclick="deleteConfirm('<?php echo site_url('cpeserta/peserta/delete/' . $pesertaa->id_peserta) ?>')" href="#!" class="btn btn-small text-danger"><i class="fas fa-trash"></i> Hapus</a>
+                                                    <a href="<?php echo site_url('cpeserta/peserta/berorder/') ?>?id=<?= $ord->id_order ?>">List Peserta</a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>

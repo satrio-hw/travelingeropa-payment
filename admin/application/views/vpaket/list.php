@@ -4,7 +4,27 @@
 <head>
 
     <?php $this->load->view("admin/_partials/head.php")  ?>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
 
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #c9d7f2;
+        }
+    </style>
 </head>
 
 <body id="page-top">
@@ -46,7 +66,7 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
+                                    <thead bgcolor="#4655f2">
                                         <tr>
                                             <th>Nama Paket</th>
                                             <th>Harga</th>
@@ -57,6 +77,7 @@
                                             <th>Asuransi</th>
                                             <th>Simcard</th>
                                             <th>Upgrade Bagasi</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>

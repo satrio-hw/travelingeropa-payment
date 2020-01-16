@@ -4,7 +4,27 @@
 <head>
 
     <?php $this->load->view("admin/_partials/head.php");  ?>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
 
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #c9d7f2;
+        }
+    </style>
 </head>
 
 <body id="page-top">
@@ -56,7 +76,7 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
+                                    <thead bgcolor="#4655f2">
                                         <tr>
                                             <th>Status Pembayaran</th>
                                             <th>Email</th>
@@ -80,8 +100,8 @@
                                                             <a onclick="return confirm('Anda yakin untuk melakukan konfirmasi?')" href="<?= base_url('cmanagementpembayaran/mp/konfirmasi'); ?>?e=<?= base64_encode($record['email']) ?>&id=<?= base64_encode($record['id_order']) ?>" class="btn btn-primary btn-user"><i class="fas fa-check-circle"></i></a>
                                                             <a onclick="return confirm('Anda yakin untuk melakukan pembatalan?')" class="btn btn-danger btn-user"><i class="fas fa-times-circle"></i></a>
                                                         <?php } else {
-                                                                                                                                                                                                                                            echo '<i class="fas fa-check-circle"></i>';
-                                                                                                                                                                                                                                        }
+                                                            echo '<i class="fas fa-check-circle"></i>';
+                                                        }
                                                         ?>
                                                     </div>
                                                 </td>

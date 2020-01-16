@@ -34,16 +34,7 @@
     </li>
 
     <!-- Nav Item - Manajemen data peserta -->
-    <?php
-    if ($sidebar == '3') {
-        echo '<li class="nav-item active">';
-    } else {
-        echo '<li class="nav-item">';
-    }  ?>
-    <a class="nav-link" href=<?= base_url('cpeserta/peserta'); ?>>
-        <i class="fas fa-users"></i>
-        <span>List Peserta</span></a>
-    </li>
+
 
     <!-- Nav Item - Manajemen data admin -->
     <?php
@@ -55,5 +46,16 @@
     <a class="nav-link" href=<?= base_url('cadmin/admin'); ?>>
         <i class="fas fa-id-badge"></i>
         <span>Manag. Admin</span></a>
+    </li>
+
+    <?php
+    if ($sidebar == '5') {
+        echo '<li class="nav-item active">';
+    } else {
+        echo '<li class="nav-item">';
+    }  ?>
+    <a class="nav-link" href=<?= base_url('corder/order'); ?>>
+        <i class="fas fa-id-badge"></i>
+        <span>Manag. Order</span></a>
     </li>
 </ul>
