@@ -40,9 +40,9 @@
     } else {
         echo '<li class="nav-item">';
     }  ?>
-    <a class="nav-link" href=<?= base_url('cpeserta/peserta'); ?>>
+    <a class="nav-link" href=<?= base_url('corder/order'); ?>>
         <i class="fas fa-users"></i>
-        <span>List Peserta</span></a>
+        <span>Manag. Order</span></a>
     </li>
 
     <!-- Nav Item - Manajemen data admin -->

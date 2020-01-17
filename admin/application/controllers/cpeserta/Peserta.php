@@ -20,6 +20,16 @@ class Peserta extends CI_Controller
         $this->load->view("vpeserta/list", $data);
     }
 
+    public function berorder()
+    {
+        $id = $_GET['id'];
+
+        $data["peserta"] = $this->peserta_model->getByIdOrder($id);
+        // var_dump($data["peserta"]);
+        $this->load->view("vpeserta/list", $data);
+        // $data["peserta"] = $this->peserta_model->getById($id);
+        // $this->load->view("vpeserta/list", $data);
+    }
     public function add()
     {
         $peserta = $this->peserta_model;
@@ -29,7 +39,12 @@ class Peserta extends CI_Controller
         if ($validation->run()) {
             $peserta->save();
             $this->session->set_flashdata('success', 'Berhasil disimpan');
-            redirect(site_url('cpeserta/peserta'));
+
+            if (isset($_POST['submitoreview'])) {
+                echo 'ggwp';
+            } else {
+                redirect(site_url('cpeserta/peserta'));
+            }
         }
         $this->load->view('vpeserta/new_form');
     }

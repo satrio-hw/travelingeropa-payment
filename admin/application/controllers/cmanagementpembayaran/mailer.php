@@ -25,27 +25,44 @@ class mailer extends CI_Controller
 
         // SMTP configuration
         $mail->isSMTP();
-        $mail->Host     = '####'; //sesuaikan sesuai nama domain hosting/server yang digunakan
+        $mail->Host     = 'smtp.gmail.com'; //sesuaikan sesuai nama domain hosting/server yang digunakan
         $mail->SMTPAuth = true;
-        $mail->Username = '#####'; // user email
-        $mail->Password = '#####'; // password email
+        $mail->Username = 'rio.elmaestro@gmail.com'; // user email
+        $mail->Password = ''; // password email
         $mail->SMTPSecure = 'ssl';
         $mail->Port     = 465;
 
-        $mail->setFrom('te-info@travelingeropapay.com', ''); // user email
+        $mail->setFrom('rio.elmaestro@gmail.com', ''); // user email
         $mail->addReplyTo('', ''); //user email
 
         // Add a recipient
         $mail->addAddress($this->session->userdata('sendto')); //email tujuan pengiriman email
 
         // Email subject
-        $mail->Subject = 'SMTP Codeigniter'; //subject email
+        $mail->Subject = 'Info Pembayaran Traveling Eropa'; //subject email
 
         // Set email format to HTML
         $mail->isHTML(true);
 
+        $mail->AddAttachment(base_url('assets/img/logo_block.png'), 'logo.png');
+
+        $mail->AddEmbeddedImage('logo.png', 'logo', 'logo.png');
+
         // Email body content
-        $mailContent = "Halo " . $this->session->userdata('sendto') . " ini adalah email test dari traveling eropa. Pesanan anda dengan ID :" . $this->session->userdata('event') . " telah diproses"; // isi email
+        if ($this->session->userdata('konfirmasi') == 'diterima') {
+            $mailContent = "<h2 align='middle'>Traveling Eropa</h2><br> <img scr=\'cid:logo\' align='middle''/> <br><br><br>Dengan ini kami dari traveling eropa memberitahukan bahwa pembayaran anda dengan detail : <br><br>
+                        Email Pemesan<ensp>:" . $this->session->userdata('sendto') . "<br>
+                        No Pesanan<ensp>:" . $this->session->userdata('idorder') . "<br>
+                        Pembayaran<ensp>:" . $this->session->userdata('type') . "<br>
+                        <br>Telah <b>berhasil kami konfirmasi</b>. Bila anda membutuhkan bantuan lebih lanjut, silahkan hubungi customer service kami";
+        }
+        if ($this->session->userdata('konfirmasi') == 'ditolak') {
+            $mailContent = "<h2 align='middle'>Traveling Eropa</h2><br> <img scr=\'cid:logo\' align='middle''/> <br><br><br>Dengan ini kami dari traveling eropa memberitahukan bahwa pembayaran anda dengan detail : <br><br>
+                        Email Pemesan<ensp>:" . $this->session->userdata('sendto') . "<br>
+                        No Pesanan<ensp>:" . $this->session->userdata('idorder') . "<br>
+                        Pembayaran<ensp>:" . $this->session->userdata('type') . "<br>
+                        <br>dengan sangat berat hati <b>kami tolak</b>. Penolakan dikarenakan beberapa alasan khusus. Bila anda membutuhkan informasi lebih lanjut, silahkan hubungi customer service kami";
+        }
         $mail->Body = $mailContent;
 
         // Send email
@@ -56,7 +73,9 @@ class mailer extends CI_Controller
             echo 'Message has been sent';
         }
         $this->session->unset_userdata('sendto');
-        $this->session->unset_userdata('event');
+        $this->session->unset_userdata('idorder');
+        $this->session->unset_userdata('type');
+        $this->session->unset_userdata('konfirmasi');
         redirect(base_url('cmanagementpembayaran/mp'));
     }
 }

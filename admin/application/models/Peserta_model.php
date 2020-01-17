@@ -39,7 +39,6 @@ class Peserta_model extends CI_Model
             [
                 'field' => 'no_passport',
                 'label' => 'No_Passport',
-                'rules' => 'numeric'
             ],
 
             [
@@ -109,7 +108,10 @@ class Peserta_model extends CI_Model
 
         $this->db->update($this->_table, $this, array('id_peserta' => $post['id']));
     }
-
+    public function getByIdOrder($id)
+    {
+        return $this->db->get_where($this->_table, ["id_order" => $id])->result();
+    }
     public function delete($id)
     {
         return $this->db->delete($this->_table, array("id_peserta" => $id));

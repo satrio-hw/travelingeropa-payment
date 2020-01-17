@@ -5,6 +5,26 @@
 
     <?php $this->load->view("admin/_partials/head.php");  ?>
 
+    <!-- Table Hover Cursor for this page START -->
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #c9d7f2;
+        }
+    </style>
+    <!-- Table Hover Cursor for this page START -->
+
 </head>
 
 <body id="page-top">
@@ -32,12 +52,15 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Management Data Pembayaran</h1>
+
+                    <?= $this->session->flashdata('message'); ?>
                     <p class="mb-4">Data Pembayaran<a target="_blank" href="https://datatables.net">Traveling Eropa</a>.</p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Data Pembayaran</h6>
+                            <!-- tombol add pembayaran dan export START -->
                             <form method="POST" action=<?= base_url("cmanagementpembayaran/mp/addpembayaran") ?>>
                                 <div align='right'>
                                     <button type="submit" name="submit" class="btn btn-primary btn-user btn-sm">
@@ -52,38 +75,68 @@
                                     </button>
                                 </div>
                             </form>
+                            <!-- tombol add pembayaran dan export END -->
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
+                                    <thead bgcolor="#4655f2">
                                         <tr>
-                                            <th>Status Pembayaran</th>
-                                            <th>Email</th>
-                                            <th>id_order</th>
-                                            <th>waktu</th>
-                                            <th>bukti</th>
-                                            <th>Konfirmasi</th>
-                                            <th>admin</th>
+                                            <th>
+                                                <font color="white">Pembayaran</font>
+                                            </th>
+                                            <th>
+                                                <font color="white">Email</font>
+                                            </th>
+                                            <th>
+                                                <font color="white">id_order</font>
+                                            </th>
+                                            <th>
+                                                <font color="white">waktu</font>
+                                            </th>
+                                            <th>
+                                                <font color="white">bukti</font>
+                                            </th>
+                                            <th>
+                                                <font color="white">Konfirmasi</font>
+                                            </th>
+                                            <th>
+                                                <font color="white">admin</font>
+                                            </th>
                                         </tr>
+                                    </thead>
                                     <tbody>
                                         <?php foreach ($pembayaran as $record) : ?>
                                             <tr>
-                                                <td><?php echo  $record['status_pembayaran']; ?></td>
-                                                <td><?php echo  $record['email']; ?></td>
-                                                <td><?php echo  $record['id_order']; ?></td>
-                                                <td><?php echo  $record['waktu']; ?></td>
-                                                <td><?php echo  '<img src="data:image/jpg;base64,' . base64_encode($record['bukti']) . '" width="200" height="200" >'; ?></td>
+                                                <td>
+                                                    <font color="black">
+                                                        <?php echo  $record['pembayaran']; ?>
+                                                </td>
+                                                <td>
+                                                    <font color="black"><?php echo  $record['email']; ?>
+                                                </td>
+                                                <td>
+                                                    <font color="black"><?php echo  $record['id_order']; ?>
+                                                </td>
+                                                <td>
+                                                    <font color="black"><?php echo  $record['waktu']; ?>
+                                                </td>
+                                                <td><a href="<?= base_url('img_bukti/') . $record['bukti']; ?>"><?php echo  $record['bukti']; ?></a>
                                                 <td>
                                                     <div>
-                                                        <?php if ($this->session->userdata('konfirmasi') == false) { ?>
-                                                            <a onclick="return confirm('Anda yakin untuk melakukan konfirmasi?')" href="<?= base_url('cmanagementpembayaran/mp/konfirmasi'); ?>?e=<?= base64_encode($record['email']) ?>&id=<?= base64_encode($record['id_order']) ?>" class="btn btn-primary btn-user"><i class="fas fa-check-circle"></i></a>
-                                                            <a onclick="return confirm('Anda yakin untuk melakukan pembatalan?')" class="btn btn-danger btn-user"><i class="fas fa-times-circle"></i></a>
-                                                        <?php } else {
-                                                                                                                                                                                                                                            echo '<i class="fas fa-check-circle"></i>';
-                                                                                                                                                                                                                                        }
+                                                        <?php if ($record['konfirmasi'] == 'none') { ?>
+                                                            <a onclick="return confirm('Anda yakin untuk melakukan konfirmasi?')" href="<?= base_url('cmanagementpembayaran/mp/konfirmasi') ?>?id=<?= base64_encode($record['id_order']); ?>&type=<?= $record['pembayaran']; ?>&e=<?= base64_encode($record['email']) ?>" class="btn btn-success btn-user"><i class="fas fa-check-circle"></i></a>
+                                                            <a onclick="return confirm('Anda yakin untuk melakukan pembatalan?')" href="<?= base_url('cmanagementpembayaran/mp/tolak') ?>?id=<?= base64_encode($record['id_order']); ?>&type=<?= $record['pembayaran']; ?>&e=<?= base64_encode($record['email']) ?>" class="btn btn-danger btn-user"><i class="fas fa-times-circle"></i></a>
+                                                        <?php } else if ($record['konfirmasi'] == 'confirmed') {
+                                                            echo '<font color="green">TERKONFIRMASI</font>';
+                                                        } else if ($record['konfirmasi'] == 'REJECTED') {
+                                                            echo '<font color="red">REJECTED</font>';
+                                                        }
                                                         ?>
                                                     </div>
+                                                </td>
+                                                <td>
+                                                    <font color="black"><?php echo  $record['admin']; ?>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -140,4 +193,4 @@
 
 </body>
 
-</html>uniqidvz
+</html>

@@ -128,11 +128,11 @@
                                         foreach ($admins as $record) :
                                         ?>
                                             <tr>
-                                                <td><?php echo  $record['nama']; ?></td>
-                                                <td><?php echo  $record['email']; ?></td>
-                                                <td><?php echo  $record['notlp']; ?></td>
-                                                <td><?php echo  $record['alamat']; ?></td>
-                                                <td><?php echo  $record['role']; ?></td>
+                                                <td><font color="black"><?php echo  $record['nama']; ?></td>
+                                                <td><font color="black"><?php echo  $record['email']; ?></td>
+                                                <td><font color="black"><?php echo  $record['notlp']; ?></td>
+                                                <td><font color="black"><?php echo  $record['alamat']; ?></td>
+                                                <td><font color="black"><?php echo  $record['role']; ?></td>
                                                 <td>
                                                     <i class="fas fa-lock"></i>
                                                 </td>
