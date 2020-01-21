@@ -10,6 +10,7 @@
         table {
             border-collapse: collapse;
             width: 100%;
+            font-size: 10pt;
         }
 
         th,
@@ -128,18 +129,30 @@
                                         foreach ($admins as $record) :
                                         ?>
                                             <tr>
-                                                <td><font color="black"><?php echo  $record['nama']; ?></td>
-                                                <td><font color="black"><?php echo  $record['email']; ?></td>
-                                                <td><font color="black"><?php echo  $record['notlp']; ?></td>
-                                                <td><font color="black"><?php echo  $record['alamat']; ?></td>
-                                                <td><font color="black"><?php echo  $record['role']; ?></td>
+                                                <td>
+                                                    <font color="black"><?php echo  $record['nama']; ?>
+                                                </td>
+                                                <td>
+                                                    <font color="black"><?php echo  $record['email']; ?>
+                                                </td>
+                                                <td>
+                                                    <font color="black"><?php echo  $record['notlp']; ?>
+                                                </td>
+                                                <td>
+                                                    <font color="black"><?php echo  $record['alamat']; ?>
+                                                </td>
+                                                <td>
+                                                    <font color="black"><?php echo  $record['role']; ?>
+                                                </td>
                                                 <td>
                                                     <i class="fas fa-lock"></i>
                                                 </td>
 
                                                 <td>
                                                     <div align="center">
-                                                        <a href="<?= base_url('cadmin/admin/editlist') ?>?id=<?= base64_encode($record['email']); ?>" class="btn btn-primary btn-user"><i class="fas fa-edit fa-sm"></i></a>
+                                                        <?php if ($record['role'] != 'mailer') { ?>
+                                                            <a href="<?= base_url('cadmin/admin/editlist') ?>?id=<?= base64_encode($record['email']); ?>" class="btn btn-primary btn-user"><i class="fas fa-edit fa-sm"></i></a>
+                                                        <?php } ?>
                                                         <a href="<?= base_url('cadmin/admin/deletelist') ?>?id=<?= base64_encode($record['email']); ?>" class="btn btn-danger btn-user"><i class="fas fa-trash-alt fa-sm"></i></a>
                                                         <?php
                                                         if (isset($record_todo)) {

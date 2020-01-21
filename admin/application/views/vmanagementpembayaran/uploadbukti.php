@@ -4,6 +4,24 @@
 <head>
 
     <?php $this->load->view("admin/_partials/head.php") ?>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 10pt;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #c9d7f2;
+        }
+    </style>
 
 </head>
 
@@ -31,94 +49,187 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Input Peserta</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Summary</h1>
 
 
                     <!-- DataTales Example -->
-                    <div class="container-fluid">
 
-                        <!-- Page Heading -->
-                        <h1 class="h3 mb-2 text-gray-800">Summary</h1>
-                        <form action="<?= base_url("cmanagementpembayaran/mp/addpembayaran") ?>" method="post" enctype="multipart/form-data">
-                            <div class="row">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <!-- Page Heading -->
+                    <form action="<?= base_url("cmanagementpembayaran/mp/addpembayaran") ?>" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <tr>
+                                    <th> Nama Pemesan :
+                                    </th>
+                                    <th> <?= $this->session->userdata('namapj') ?>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th> Email Pemesan :
+                                    </th>
+                                    <th> <?= $this->session->userdata('email_pemesan') ?>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th> Pembayaran :
+                                    </th>
+                                    <th> <?= $this->session->userdata('tipe_bayar') ?>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th> untuk paket :
+                                    </th>
+                                    <th> (<?= $id_paket; ?>) <?= $nama; ?>
+                                    </th>
+                                </tr>
+                            </table>
+                            <table class="table-bordered" id="dataTable" cellspacing="0">
+                                <thead bgcolor="#4655f2">
                                     <tr>
-                                        <th> Email Pemesan :
+                                        <th>
+                                            <font color="white">
+                                                Email Peserta
                                         </th>
-                                        <th> <?= $this->session->userdata('email_pemesan') ?>
+                                        <th>
+                                            <font color="white">
+                                                Nama
+                                        </th>
+                                        <th>
+                                            <font color="white">
+                                                Tanggal Lahir
+                                        </th>
+                                        <th>
+                                            <font color="white">
+                                                Nomor Passport
+                                        </th>
+                                        <th>
+                                            <font color="white">
+                                                Expired Passport
+                                        </th>
+                                        <th>
+                                            <font color="white">
+                                                Status Tiket
+                                        </th>
+                                        <th>
+                                            <font color="white">
+                                                Nomor Hanphone
+                                        </th>
+                                        <th>
+                                            <font color="white">
+                                                Domisili
+                                        </th>
+
+                                        <th>
+                                            <font color="white">
+                                                Up Room
+                                        </th>
+                                        <th>
+                                            <font color="white">
+                                                Opsi.
+                                        </th>
+                                        <th>
+                                            <font color="white">
+                                                VISA
+                                        </th>
+                                        <th>
+                                            <font color="white">
+                                                Asuransi
+                                        </th>
+                                        <th>
+                                            <font color="white">
+                                                SIM Card
+                                        </th>
+                                        <th>
+                                            <font color="white">
+                                                Up. Bgg Perg
+                                        </th>
+                                        <th>
+                                            <font color="white">
+                                                Up. Bgg Pul
                                         </th>
                                     </tr>
-                                    <tr>
-                                        <th> Pembayaran :
-                                        </th>
-                                        <th> <?= $this->session->userdata('tipe_bayar') ?>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th> untuk paket :
-                                        </th>
-                                        <th> (<?= $id_paket; ?>) <?= $nama; ?>
-                                        </th>
-                                    </tr>
-                                </table>
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
+                                </thead>
+                                <tbody>
+                                    <?php for ($i = 0; $i < intval($this->session->userdata('jmlh_psrta')); $i++) {
+                                    ?>
                                         <tr>
-                                            <th>Email Peserta</th>
-                                            <th>Nama</th>
-                                            <th>Tanggal Lahir</th>
-                                            <th>Nomor Passport</th>
-                                            <th>Expired Passport</th>
-                                            <th>Status Tiket</th>
-                                            <th>Nomor Hanphone</th>
-                                            <th>Domisili</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php for ($i = 0; $i < intval($this->session->userdata('jmlh_psrta')); $i++) {
-                                        ?>
-                                            <tr>
-                                                <td>
+                                            <td>
+                                                <font color="black">
                                                     <?= strval($this->session->userdata('que_email_peserta')[$i]); ?>
-                                                </td>
-                                                <td>
+                                            </td>
+                                            <td>
+                                                <font color="black">
                                                     <?= strval($this->session->userdata('que_nama_peserta')[$i]); ?>
-                                                </td>
-                                                <td>
+                                            </td>
+                                            <td>
+                                                <font color="black">
                                                     <?= strval($this->session->userdata('que_ttl_peserta')[$i]); ?>
-                                                </td>
-                                                <td>
+                                            </td>
+                                            <td>
+                                                <font color="black">
                                                     <?= strval($this->session->userdata('que_nopass_peserta')[$i]); ?>
-                                                </td>
-                                                <td>
+                                            </td>
+                                            <td>
+                                                <font color="black">
                                                     <?= strval($this->session->userdata('que_exppass_peserta')[$i]); ?>
-                                                </td>
-                                                <td>
+                                            </td>
+                                            <td>
+                                                <font color="black">
                                                     <?= strval($this->session->userdata('que_tiket_peserta')[$i]); ?>
-                                                </td>
-                                                <td>
+                                            </td>
+                                            <td>
+                                                <font color="black">
                                                     <?= strval($this->session->userdata('que_nohp_peserta')[$i]); ?>
-                                                </td>
-                                                <td>
+                                            </td>
+                                            <td>
+                                                <font color="black">
                                                     <?= strval($this->session->userdata('que_domisili_peserta')[$i]); ?>
-                                                </td>
-                                            </tr>
-                                        <?php
-                                        } ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="form-group">
-                                <label>Upload Bukti Pembayaran ( <?= '<' ?> 5MB ):</label>
-                                <input type="file" name='bukti'>
+                                            </td>
 
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" name="submitaddform" class="btn btn-primary btn-user btn-block" value="Konfirmasi Pembayaran" onclick="return confirm('Konfirmasi pesanan ini?')" />
-                            </div>
-                        </form>
+                                            <td>
+                                                <font color="black">
+                                                    <?= strval($this->session->userdata('que_upgrade_kamar')[$i]); ?>
+                                            </td>
+                                            <td>
+                                                <font color="black">
+                                                    <?= strval($this->session->userdata('que_optional')[$i]); ?>
+                                            </td>
+                                            <td>
+                                                <font color="black">
+                                                    <?= strval($this->session->userdata('que_visa')[$i]); ?>
+                                            </td>
+                                            <td>
+                                                <font color="black">
+                                                    <?= strval($this->session->userdata('que_asuransi')[$i]); ?>
+                                            </td>
+                                            <td>
+                                                <font color="black">
+                                                    <?= strval($this->session->userdata('que_simcard')[$i]); ?>
+                                            </td>
+                                            <td>
+                                                <font color="black">
+                                                    <?= strval($this->session->userdata('que_bagasipergi')[$i]); ?>
+                                            </td>
+                                            <td>
+                                                <font color="black">
+                                                    <?= strval($this->session->userdata('que_bagasipulang')[$i]); ?>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                    } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-group">
+                            <label>Upload Bukti Pembayaran ( <?= '<' ?> 5MB ):</label>
+                            <input type="file" name='bukti'>
 
-                    </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="submitaddform" class="btn btn-primary btn-user btn-block" value="Konfirmasi Pembayaran" onclick="return confirm('Konfirmasi pesanan ini?')" />
+                        </div>
+                    </form>
+
                     <!-- /.container-fluid -->
 
                 </div>

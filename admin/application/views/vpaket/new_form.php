@@ -64,7 +64,7 @@
                             </div>
                         </div>
                         <div class="col">
-                            <label for="keterangan_tambahan">Keterangan Tambahan</label>
+                            <label for="keterangan_tambahan">Tambahan (Optional)</label>
                             <input class="form-control <?php echo form_error('keterangan_tambahan') ? 'is-invalid' : '' ?>" type="text" name="keterangan_tambahan" placeholder="Keterangan Tambahan" />
                             <div class="invalid-feedback">
                                 <?php echo form_error('keterangan_tambahan') ?>

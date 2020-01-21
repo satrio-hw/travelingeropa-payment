@@ -27,12 +27,12 @@ class Order_model extends CI_Model
 
     public function getAll()
     {
-        $this->db->select('pembayaran.id_order , paket.nama as nama_paket, pembayaran.email as email');
-        $this->db->from('order');
-        $this->db->join('paket', 'paket.id_paket = order.id_paket');
-        $this->db->join('pembayaran', 'pembayaran.id_order = order.id_order');
-        $query = $this->db->get();
-        return $query->result();
+        // $this->db->select('pembayaran.id_order , paket.nama as nama_paket, pembayaran.email as email');
+        // $this->db->from('order');
+        // $this->db->join('paket', 'paket.id_paket = order.id_paket');
+        // $this->db->join('pembayaran', 'pembayaran.id_order = order.id_order');
+        // $query = $this->db->get();
+        // return $query->result();
         return $this->db->get($this->_table)->result();
     }
 

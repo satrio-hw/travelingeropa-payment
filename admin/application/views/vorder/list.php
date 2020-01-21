@@ -66,7 +66,8 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 addnew">
-                            <a href="<?php echo site_url('corder/order/add') ?>"><i class="fas fa-user-plus"></i></a><br>
+                            <!-- <a href="<?php #echo site_url('corder/order/add') 
+                                            ?>"><i class="fas fa-user-plus"></i></a><br> -->
                             <a href="<?= base_url('cpeserta/peserta'); ?>"><i class="fas fa-list"></i>Lihat Semua Peserta</a>
                         </div>
                         <div class="navbar-text">
@@ -86,16 +87,20 @@
                                         <?php foreach ($order as $ord) : ?>
                                             <tr>
                                                 <td>
-                                                    <?= $ord->id_order ?>
+                                                    <font color='black'>
+                                                        <?= $ord->id_order ?>
                                                 </td>
                                                 <td>
-                                                    <?= $ord->nama_paket ?>
+                                                    <font color='black'>
+                                                        <?= $ord->id_paket ?>
                                                 </td>
                                                 <td>
-                                                    <?= $ord->email ?>
+                                                    <font color='black'>
+                                                        <?= $ord->email_pemesan ?>
                                                 </td>
                                                 <td>
-                                                    <a href="<?php echo site_url('cpeserta/peserta/berorder/') ?>?id=<?= $ord->id_order ?>">List Peserta</a>
+                                                    <font color='black'>
+                                                        <a href="<?php echo site_url('cpeserta/peserta/berorder/') ?>?id=<?= $ord->id_order ?>">List Peserta</a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>

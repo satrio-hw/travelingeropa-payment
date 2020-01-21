@@ -10,6 +10,7 @@
         table {
             border-collapse: collapse;
             width: 100%;
+            font-size: 10pt;
         }
 
         th,
@@ -53,6 +54,7 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Management Data Pembayaran</h1>
 
+
                     <?= $this->session->flashdata('message'); ?>
                     <p class="mb-4">Data Pembayaran<a target="_blank" href="https://datatables.net">Traveling Eropa</a>.</p>
 
@@ -61,20 +63,16 @@
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Data Pembayaran</h6>
                             <!-- tombol add pembayaran dan export START -->
-                            <form method="POST" action=<?= base_url("cmanagementpembayaran/mp/addpembayaran") ?>>
-                                <div align='right'>
+                            <div align='right'>
+                                <form method="POST" action=<?= base_url("cmanagementpembayaran/mp/topoption") ?>>
                                     <button type="submit" name="submit" class="btn btn-primary btn-user btn-sm">
                                         <i class="fas fa-plus-circle"></i>
                                     </button>
-                                </div>
-                            </form>
-                            <form method="POST" action=<?= base_url("cmanagementpembayaran/mp/export_pembayaran") ?>>
-                                <div align="right">
                                     <button type="submit" name="export" class="btn btn-success btn-user btn-sm" value="export">
                                         <i class="fas fa-file-download"></i>
                                     </button>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                             <!-- tombol add pembayaran dan export END -->
                         </div>
                         <div class="card-body">
@@ -86,22 +84,22 @@
                                                 <font color="white">Pembayaran</font>
                                             </th>
                                             <th>
-                                                <font color="white">Email</font>
+                                                <font color="white">Email Penanggungjawab</font>
                                             </th>
                                             <th>
-                                                <font color="white">id_order</font>
+                                                <font color="white">ID Order</font>
                                             </th>
                                             <th>
-                                                <font color="white">waktu</font>
+                                                <font color="white">Waktu Pemesanan</font>
                                             </th>
                                             <th>
-                                                <font color="white">bukti</font>
+                                                <font color="white">Bukti Pembayaran</font>
                                             </th>
                                             <th>
-                                                <font color="white">Konfirmasi</font>
+                                                <font color="white">Tindakan Konformasi</font>
                                             </th>
                                             <th>
-                                                <font color="white">admin</font>
+                                                <font color="white">Admin</font>
                                             </th>
                                         </tr>
                                     </thead>
@@ -113,7 +111,10 @@
                                                         <?php echo  $record['pembayaran']; ?>
                                                 </td>
                                                 <td>
-                                                    <font color="black"><?php echo  $record['email']; ?>
+                                                    <font color="black">
+                                                        <a href="<?= base_url('cmanagementpembayaran/mp/pemesan') ?>?e=<?= base64_encode($record['email']); ?>?>">
+                                                            <?php echo  $record['email']; ?>
+                                                        </a>
                                                 </td>
                                                 <td>
                                                     <font color="black"><?php echo  $record['id_order']; ?>
@@ -121,16 +122,19 @@
                                                 <td>
                                                     <font color="black"><?php echo  $record['waktu']; ?>
                                                 </td>
-                                                <td><a href="<?= base_url('img_bukti/') . $record['bukti']; ?>"><?php echo  $record['bukti']; ?></a>
+                                                <td><a target="_blank" href="<?= base_url('img_bukti/') . $record['bukti']; ?>"><?php echo  $record['bukti']; ?></a>
                                                 <td>
                                                     <div>
                                                         <?php if ($record['konfirmasi'] == 'none') { ?>
                                                             <a onclick="return confirm('Anda yakin untuk melakukan konfirmasi?')" href="<?= base_url('cmanagementpembayaran/mp/konfirmasi') ?>?id=<?= base64_encode($record['id_order']); ?>&type=<?= $record['pembayaran']; ?>&e=<?= base64_encode($record['email']) ?>" class="btn btn-success btn-user"><i class="fas fa-check-circle"></i></a>
+                                                            <a href="<?= base_url('cmanagementpembayaran/mp/pending') ?>?id=<?= base64_encode($record['id_order']); ?>&type=<?= $record['pembayaran']; ?>&e=<?= base64_encode($record['email']) ?>" class="btn btn-info btn-user"><i class="fas fa-tasks"></i></a>
                                                             <a onclick="return confirm('Anda yakin untuk melakukan pembatalan?')" href="<?= base_url('cmanagementpembayaran/mp/tolak') ?>?id=<?= base64_encode($record['id_order']); ?>&type=<?= $record['pembayaran']; ?>&e=<?= base64_encode($record['email']) ?>" class="btn btn-danger btn-user"><i class="fas fa-times-circle"></i></a>
                                                         <?php } else if ($record['konfirmasi'] == 'confirmed') {
                                                             echo '<font color="green">TERKONFIRMASI</font>';
                                                         } else if ($record['konfirmasi'] == 'REJECTED') {
                                                             echo '<font color="red">REJECTED</font>';
+                                                        } else {
+                                                            echo '<font color="blue">' . $record["konfirmasi"] . '</font>';
                                                         }
                                                         ?>
                                                     </div>

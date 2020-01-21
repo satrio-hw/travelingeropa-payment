@@ -266,4 +266,48 @@ class admin extends CI_Controller
             $this->load->view("vadmin/passform", $email_todo);
         }
     }
+    // Edit Sender
+    public function editsender()
+    {
+        if (isset($_POST['submitmailer'])) {
+
+            $this->form_validation->set_rules('emailsender', 'Nama Admin', 'required|trim');
+            $this->form_validation->set_rules('smtpmailer', 'Alamat Admin', 'required|max_length[120]|trim');
+            $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[6]|matches[password2]', [
+                'matches' => 'password yang anda masukan tidak sama ',
+                'min_length' => 'password terlalu pendek'
+            ]);
+            $this->form_validation->set_rules('password2', 'Konfirmasi Password', 'required|min_length[6]|matches[password1]|trim', [
+                'matches' => 'password yang anda masukan tidak sama ',
+                'min_length' => 'password terlalu pendek'
+            ]);
+
+            if ($this->form_validation->run() == false) {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Konfigurasi mailer gagal, cek kembali input yang dimasukan</div>');
+                redirect('cadmin/admin');
+            } else {
+                $mailer = $this->input->post('emailsender');
+                $senderemail = $this->db->get_where('admin', ['role' => 'mailer'])->row_array();
+                $passmailer = $senderemail['password'];
+
+                if ($this->input->post('passwordold') == base64_decode($passmailer)) {
+                    $data1 = [
+                        'email' => htmlspecialchars($this->input->post('emailsender', true)),
+                        'alamat' => htmlspecialchars($this->input->post('smtpmailer', true)),
+                        'password' => base64_encode($this->input->post('password1'))
+                    ];
+                    $this->db->where('role', 'mailer');
+                    $this->db->update('admin', $data1);
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Mailer Berhasil diubah</div>');
+                    redirect('cadmin/admin');
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Konfigurasi mailer gagal, cek password yang dimasukan</div>');
+                    redirect('cadmin/admin');
+                }
+            }
+        } else {
+            $data = ['mailer' => $_GET['id']];
+            $this->load->view("vadmin/themailer", $data);
+        }
+    }
 }

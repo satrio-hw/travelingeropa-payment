@@ -5,6 +5,7 @@
 
     <?php $this->load->view("admin/_partials/head.php") ?>
 
+
 </head>
 
 <body id="page-top">
@@ -44,14 +45,14 @@
                             <div class="row">
                                 <div class="col">
                                     <label for="email_peserta">Email Peserta</label>
-                                    <input class="form-control <?php echo form_error('email_peserta') ? 'is-invalid' : '' ?>" type="text" name="email_peserta" placeholder="Email Peserta" />
+                                    <input class="form-control <?php echo form_error('email_peserta') ? 'is-invalid' : '' ?>" type="text" name="email_peserta" placeholder="Email Peserta" required />
                                     <div class="invalid-feedback">
                                         <?php echo form_error('email_peserta') ?>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <label for="nama">Nama Peserta</label>
-                                    <input class="form-control <?php echo form_error('nama') ? 'is-invalid' : '' ?>" type="text" name="nama" placeholder="Nama Peserta" />
+                                    <input class="form-control <?php echo form_error('nama') ? 'is-invalid' : '' ?>" type="text" name="nama" placeholder="Nama Peserta" required />
                                     <div class="invalid-feedback">
                                         <?php echo form_error('nama') ?>
                                     </div>
@@ -60,7 +61,7 @@
                             <div class="row">
                                 <div class="col">
                                     <label for="tanggal_lahir">Tanggal Lahir</label>
-                                    <input class="form-control <?php echo form_error('tanggal_lahir') ? 'is-invalid' : '' ?>" type="date" name="tanggal_lahir" placeholder="Tanggal Lahir" />
+                                    <input class="form-control <?php echo form_error('tanggal_lahir') ? 'is-invalid' : '' ?>" type="date" name="tanggal_lahir" placeholder="Tanggal Lahir" required />
                                     <div class="invalid-feedback">
                                         <?php echo form_error('tanggal_lahir') ?>
                                     </div>
@@ -83,9 +84,9 @@
                                 </div>
                                 <div class="col">
                                     <label for="status_tiket">Status Tiket</label>
-                                    <select name="status_tiket" class="form-control <?php echo form_error('status_tiket') ? 'is-invalid' : '' ?>">
+                                    <select name="status_tiket" class="form-control <?php echo form_error('status_tiket') ? 'is-invalid' : '' ?>" required>
                                         <option value="">--Pilih--</option>
-                                        <option value="Inlcude">Include</option>
+                                        <option value="Include">Include</option>
                                         <option value="Tidak Include">Tidak Include</option>
                                     </select>
                                     <div class="invalid-feedback">
@@ -96,14 +97,14 @@
                             <div class="row">
                                 <div class="col">
                                     <label for="hp">Nomor Handphone</label>
-                                    <input class="form-control <?php echo form_error('hp') ? 'is-invalid' : '' ?>" type="number" name="hp" placeholder="Nomor Handphone" />
+                                    <input class="form-control <?php echo form_error('hp') ? 'is-invalid' : '' ?>" type="number" name="hp" min=0 placeholder="Nomor Handphone" required />
                                     <div class="invalid-feedback">
                                         <?php echo form_error('hp') ?>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <label for="domisili">Domisili</label>
-                                    <input class="form-control <?php echo form_error('domisili') ? 'is-invalid' : '' ?>" type="text" name="domisili" placeholder="Domisili" />
+                                    <input class="form-control <?php echo form_error('domisili') ? 'is-invalid' : '' ?>" type="text" name="domisili" placeholder="Domisili" required />
                                     <div class="invalid-feedback">
                                         <?php echo form_error('domisili') ?>
                                     </div>
@@ -111,90 +112,69 @@
                             </div>
 
                             <br>
-                            <!-- <br>
+                            <br>
 
                             <div class="row">
                                 <div class="col">
-                                    <label for="email_peserta">Upgrade Kamar</label>
-                                    <select name="status_tiket" class="form-control <?php echo form_error('status_tiket') ? 'is-invalid' : '' ?>">
+                                    <label for="upkamar">Upgrade Kamar</label>
+                                    <select name="upkamar" class="form-control <?php echo form_error('status_tiket') ? 'is-invalid' : '' ?>" required>
                                         <option value="">--Pilih--</option>
-                                        <option value="Inlcude">Include</option>
+                                        <option value="Include">Include</option>
                                         <option value="Tidak Include">Tidak Include</option>
                                     </select>
-                                    <div class="invalid-feedback">
-                                        <?php echo form_error('email_peserta') ?>
-                                    </div>
                                 </div>
                                 <div class="col">
-                                    <label for="nama">Opsional</label>
-                                    <select name="status_tiket" class="form-control <?php echo form_error('status_tiket') ? 'is-invalid' : '' ?>">
+                                    <label for="optional">Opsional</label>
+                                    <select name="optional" class="form-control <?php echo form_error('status_tiket') ? 'is-invalid' : '' ?>" required>
                                         <option value="">--Pilih--</option>
-                                        <option value="Inlcude">Include</option>
+                                        <option value="Include">Include</option>
                                         <option value="Tidak Include">Tidak Include</option>
                                     </select>
-                                    <div class="invalid-feedback">
-                                        <?php echo form_error('nama') ?>
-                                    </div>
                                 </div>
                                 <div class="col">
-                                    <label for="email_peserta">Visa</label>
-                                    <select name="status_tiket" class="form-control <?php echo form_error('status_tiket') ? 'is-invalid' : '' ?>">
+                                    <label for="visa">Visa</label>
+                                    <select name="visa" class="form-control <?php echo form_error('status_tiket') ? 'is-invalid' : '' ?>" required>
                                         <option value="">--Pilih--</option>
-                                        <option value="Inlcude">Include</option>
+                                        <option value="Include">Include</option>
                                         <option value="Tidak Include">Tidak Include</option>
                                     </select>
-                                    <div class="invalid-feedback">
-                                        <?php echo form_error('email_peserta') ?>
-                                    </div>
                                 </div>
                                 <div class="col">
-                                    <label for="nama">Asuransi</label>
-                                    <select name="status_tiket" class="form-control <?php echo form_error('status_tiket') ? 'is-invalid' : '' ?>">
+                                    <label for="asuransi">Asuransi</label>
+                                    <select name="asuransi" class="form-control <?php echo form_error('status_tiket') ? 'is-invalid' : '' ?>" required>
                                         <option value="">--Pilih--</option>
-                                        <option value="Inlcude">Include</option>
+                                        <option value="Include">Include</option>
                                         <option value="Tidak Include">Tidak Include</option>
                                     </select>
-                                    <div class="invalid-feedback">
-                                        <?php echo form_error('nama') ?>
-                                    </div>
                                 </div>
                                 <div class="col">
-                                    <label for="nama">SIM Card</label>
-                                    <select name="status_tiket" class="form-control <?php echo form_error('status_tiket') ? 'is-invalid' : '' ?>">
+                                    <label for="simcard">SIM Card</label>
+                                    <select name="simcard" class="form-control <?php echo form_error('status_tiket') ? 'is-invalid' : '' ?>" required>
                                         <option value="">--Pilih--</option>
-                                        <option value="Inlcude">Include</option>
+                                        <option value="Include">Include</option>
                                         <option value="Tidak Include">Tidak Include</option>
                                     </select>
-                                    <div class="invalid-feedback">
-                                        <?php echo form_error('nama') ?>
-                                    </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <label for="email_peserta">Upgrade Bagasi Pergi</label>
-                                    <select name="status_tiket" class="form-control <?php echo form_error('status_tiket') ? 'is-invalid' : '' ?>">
+                                    <label for="bagasipergi">Upgrade Bagasi Pergi</label>
+                                    <select name="bagasipergi" class="form-control <?php echo form_error('status_tiket') ? 'is-invalid' : '' ?>" required>
                                         <option value="">--Pilih--</option>
-                                        <option value="Inlcude">Include</option>
+                                        <option value="Include">Include</option>
                                         <option value="Tidak Include">Tidak Include</option>
                                     </select>
-                                    <div class="invalid-feedback">
-                                        <?php echo form_error('email_peserta') ?>
-                                    </div>
                                 </div>
                                 <div class="col">
-                                    <label for="nama">Upgrade Bagasi Pulang</label>
-                                    <select name="status_tiket" class="form-control <?php echo form_error('status_tiket') ? 'is-invalid' : '' ?>">
+                                    <label for="bagasipulang">Upgrade Bagasi Pulang</label>
+                                    <select name="bagasipulang" class="form-control <?php echo form_error('status_tiket') ? 'is-invalid' : '' ?>" required>
                                         <option value="">--Pilih--</option>
-                                        <option value="Inlcude">Include</option>
+                                        <option value="Include">Include</option>
                                         <option value="Tidak Include">Tidak Include</option>
                                     </select>
-                                    <div class="invalid-feedback">
-                                        <?php echo form_error('nama') ?>
-                                    </div>
                                 </div>
                             </div>
-                            <br> -->
+                            <br>
                             <?php if ($this->session->userdata('loop_input_psrta') == 1) {
                             ?>
                                 <input class="btn btn-primary" type="submit" name="submitdetail" value="Selanjutnya" />

@@ -64,6 +64,7 @@
                                             <select class="form-control" name="role" id="role" required>
                                                 <option value="adm">Admin</option>
                                                 <option value="spadm">Super Admin</option>
+                                                <option value="mailer">Mailer</option>
                                             </select>
                                         </div>
                                     </div>

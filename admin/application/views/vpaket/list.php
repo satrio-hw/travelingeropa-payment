@@ -4,6 +4,26 @@
 <head>
 
     <?php $this->load->view("admin/_partials/head.php")  ?>
+    <!-- Table Hover Cursor for this page START -->
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 10pt;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #c9d7f2;
+        }
+    </style>
+    <!-- Table Hover Cursor for this page START -->
 
 </head>
 
@@ -46,52 +66,82 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
+                                    <thead bgcolor="#4655f2">
                                         <tr>
-                                            <th>Nama Paket</th>
-                                            <th>Harga</th>
-                                            <th>Harga In Landtour</th>
-                                            <th>Upgrade Kamar</th>
-                                            <th>Keterangan Tambahan</th>
-                                            <th>Visa</th>
-                                            <th>Asuransi</th>
-                                            <th>Simcard</th>
-                                            <th>Upgrade Bagasi</th>
+                                            <th>
+                                                <font color="white">Nama Paket</font>
+                                            </th>
+                                            <th>
+                                                <font color="white">Harga</font>
+                                            </th>
+                                            <th>
+                                                <font color="white">Harga In-Landtour</font>
+                                            </th>
+                                            <th>
+                                                <font color="white">Upgrade Kamar</font>
+                                            </th>
+                                            <th>
+                                                <font color="white">Optional</font>
+                                            </th>
+                                            <th>
+                                                <font color="white">Visa</font>
+                                            </th>
+                                            <th>
+                                                <font color="white">Asuransi</font>
+                                            </th>
+                                            <th>
+                                                <font color="white">Simcard</font>
+                                            </th>
+                                            <th>
+                                                <font color="white">Upgrade Bagasi</font>
+                                            </th>
+                                            <th>
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php foreach ($paket as $paket2) : ?>
                                             <tr>
                                                 <td>
-                                                    <?= $paket2->nama ?>
+                                                    <font color='black'>
+                                                        <?= $paket2->nama ?>
                                                 </td>
                                                 <td>
-                                                    <?= $paket2->harga ?>
+                                                    <font color='black'>
+                                                        <?= $paket2->harga ?>
                                                 </td>
                                                 <td>
-                                                    <?= $paket2->harga_in_landtour ?>
+                                                    <font color='black'>
+                                                        <?= $paket2->harga_in_landtour ?>
                                                 </td>
                                                 <td>
-                                                    <?= $paket2->upgrade_kamar ?>
+                                                    <font color='black'>
+                                                        <?= $paket2->upgrade_kamar ?>
                                                 </td>
                                                 <td>
-                                                    <?= $paket2->keterangan_tambahan ?>
+                                                    <font color='black'>
+                                                        <?= $paket2->keterangan_tambahan ?>
                                                 </td>
                                                 <td>
-                                                    <?= $paket2->visa ?>
+                                                    <font color='black'>
+                                                        <?= $paket2->visa ?>
                                                 </td>
                                                 <td>
-                                                    <?= $paket2->asuransi ?>
+                                                    <font color='black'>
+                                                        <?= $paket2->asuransi ?>
                                                 </td>
                                                 <td>
-                                                    <?= $paket2->simcard ?>
+                                                    <font color='black'>
+                                                        <?= $paket2->simcard ?>
                                                 </td>
                                                 <td>
-                                                    <?= $paket2->upgrade_bagasi ?>
+                                                    <font color='black'>
+                                                        <?= $paket2->upgrade_bagasi ?></font>
                                                 </td>
                                                 <td>
-                                                    <a href="<?php echo site_url('cpaket/paket/edit/' . $paket2->id_paket) ?>" class="btn btn-small"><i class="fas fa-edit"></i> Edit</a>
-                                                    <a onclick="deleteConfirm('<?php echo site_url('cpaket/paket/delete/' . $paket2->id_paket) ?>')" href="#!" class="btn btn-small text-danger"><i class="fas fa-trash"></i> Hapus</a>
+                                                    <font color='black'>
+                                                        <a href="<?php echo site_url('cpaket/paket/edit/' . $paket2->id_paket) ?>" class="btn btn-small"><i class="fas fa-edit"></i> Edit</a>
+                                                        <a onclick="deleteConfirm('<?php echo site_url('cpaket/paket/delete/' . $paket2->id_paket) ?>')" href="#!" class="btn btn-small text-danger"><i class="fas fa-trash"></i> Hapus</a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>

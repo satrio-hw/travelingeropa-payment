@@ -52,7 +52,6 @@
                                                         <label for="password">Password</label>
                                                         <input type="password" class="form-control" name="password" placeholder="Password" required />
                                                     </div>
-                                                    <a href="<?= site_url('reset_password') ?>">Lupa Password?</a>
                                             </div>
                                         </div>
                                         <div class="form-group">

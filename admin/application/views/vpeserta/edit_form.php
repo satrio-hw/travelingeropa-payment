@@ -62,7 +62,7 @@
                             </div>
                             <div class="col">
                                 <label for="no_passport">Nomor Passport</label>
-                                <input class="form-control <?php echo form_error('no_passport') ? 'is-invalid' : '' ?>" value="<?php echo $peserta->no_passport ?>" type="number" name="no_passport" placeholder="Nomor Passport" />
+                                <input class="form-control <?php echo form_error('no_passport') ? 'is-invalid' : '' ?>" value="<?php echo $peserta->no_passport ?>" type="text" name="no_passport" placeholder="Nomor Passport" />
                                 <div class="invalid-feedback">
                                     <?php echo form_error('no_passport') ?>
                                 </div>
@@ -80,7 +80,7 @@
                                 <label for="status_tiket">Status Tiket*</label>
                                 <select name="status_tiket" class="form-control <?php echo form_error('status_tiket') ? 'is-invalid' : '' ?>" value="<?php echo $peserta->status_tiket ?>">
                                     <option value="">--Pilih--</option>
-                                    <option value="Status Tiket">Status Tiket</option>
+                                    <option value="Tidak Include">Tidak Include</option>
                                     <option value="Include">Include</option>
                                 </select>
                                 <div class="invalid-feedback">

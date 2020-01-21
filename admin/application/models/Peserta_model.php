@@ -44,7 +44,6 @@ class Peserta_model extends CI_Model
             [
                 'field' => 'exp_passport',
                 'label' => 'Exp_Passport',
-                'rules' => 'required'
             ],
 
             [
