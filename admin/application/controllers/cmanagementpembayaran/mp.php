@@ -173,7 +173,7 @@ class mp extends CI_Controller
                 if (!$this->upload->do_upload('bukti')) {
                     echo $this->upload->display_errors();
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role = "alert">Gagal Upload Gambar Bukti</div>');
-                    #redirect('cmanagementpembayaran/mp');
+                    redirect('cmanagementpembayaran/mp');
                 } else {
                     $idorder = date('YmdHisu');
                     ### input tabel pembayaran ##
