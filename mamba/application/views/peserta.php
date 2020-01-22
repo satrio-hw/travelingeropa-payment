@@ -6,10 +6,10 @@
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- css -->
-  <link href=<?= base_url("assets/css/bootstrap.min.css")?> rel="stylesheet" media="screen">
-  <link href=<?= base_url("assets/css/style.css")?> rel="stylesheet" media="screen">
-  <link href=<?= base_url("assets/color/default.css")?> rel="stylesheet" media="screen">
-  <script src=<?= base_url("assets/js/modernizr.custom.js")?>></script>
+  <link href=<?= base_url("assets/css/bootstrap.min.css") ?> rel="stylesheet" media="screen">
+  <link href=<?= base_url("assets/css/style.css") ?> rel="stylesheet" media="screen">
+  <link href=<?= base_url("assets/color/default.css") ?> rel="stylesheet" media="screen">
+  <script src=<?= base_url("assets/js/modernizr.custom.js") ?>></script>
   <!-- =======================================================
     Theme Name: Mamba
     Theme URL: https://bootstrapmade.com/mamba-one-page-bootstrap-template-free/
@@ -53,9 +53,9 @@
           <div class="col-md-12">
 
             <div class="brand">
-              <h1><a href=<?= base_url('maincontrol')?>>TRAVELING EROPA</a>
-              <div class="line-spacer"></div>
-              <p><span> ADD PESERTA </span></p>
+              <h1><a href=<?= base_url('maincontrol') ?>>TRAVELING EROPA</a>
+                <div class="line-spacer"></div>
+                <p><span> ADD PESERTA </span></p>
             </div>
           </div>
         </div>
@@ -77,98 +77,154 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-md-offset-2 col-md-8">
-          <div id="sendmessage"></div>
-          <div id="errormessage"></div>
-          <form action=<?= base_url("cdp/addpeserta") ?> method="post" >
-          <div class="row form-group">
-          <div class="col-md-12">
-														<label for="fullname">Email Peserta</label>
-														<input class="form-control <?php echo form_error('email_peserta') ? 'is-invalid' : '' ?>" type="text" name="email_peserta" placeholder="Email Peserta" />
-                                                        <div class="invalid-feedback">
-                                                        <?php echo form_error('email_peserta') ?>
-                                                        </div>
-                                                        </div>
-                                                
-                                                </div>
-                                                <div class="row form-group">
-													<div class="col-md-12">
-														<label for="Alamat">Alamat</label>
-														<input type="text" id="Alamat" class="form-control">
-													</div>
-                                                </div>
-                                                <div class="row form-group">
-													<div class="col-md-12">
-                                                    <label for="nama">Nama Peserta</label>
-                                    <input class="form-control <?php echo form_error('nama') ? 'is-invalid' : '' ?>" type="text" name="nama" placeholder="Nama" />
-                                    <div class="invalid-feedback">
-                                        <?php echo form_error('nama') ?>
-                                    </div>
-                                    </div>
-                                                </div>
-                                                <div class="row form-group">
-													<div class="col-md-12">
-                                                    <label for="tanggal_lahir">Tanggal Lahir</label>
-                                    <input class="form-control <?php echo form_error('tanggal_lahir') ? 'is-invalid' : '' ?>" type="date" name="tanggal_lahir" placeholder="Tanggal Lahir" />
-                                    <div class="invalid-feedback">
-                                        <?php echo form_error('tanggal_lahir') ?>
-                                    </div>
-                                                </div>
-                                                <div class="row form-group">
-													<div class="col-md-12">
-                                                    <label for="no_pasport">Nomor Pasport</label>
-                                    <input class="form-control <?php echo form_error('no_pasport') ? 'is-invalid' : '' ?>" type="number" name="no_pasport" placeholder="no_pasport" />
-                                    <div class="invalid-feedback">
-                                        <?php echo form_error('no_pasport') ?>
-                                    </div>
-                                                </div>
-                                                <div class="row form-group">
-													<div class="col-md-12">
-                                                    <label for="exp_passport">Expired Passport</label>
-                                    <input class="form-control <?php echo form_error('exp_passport') ? 'is-invalid' : '' ?>" type="date" name="exp_passport" placeholder="exp_passport" />
-                                    <div class="invalid-feedback">
-                                        <?php echo form_error('exp_passport') ?>
-                                    </div>
-                                                </div>
-                                                <div class="row form-group">
-													<div class="col-md-12">
-                                                    <label for="exp_passport">Status Tiket</label>
-                                                    <select name="status_tiket" class="form-control <?php echo form_error('status_tiket') ? 'is-invalid' : '' ?>">
-                                        <option value="">--Pilih--</option>
-                                        <option value="Inlcude">Include</option>
-                                        <option value="Tidak Include">Tidak Include</option>
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        <?php echo form_error('status_tiket') ?>
-                                    </div>
-                                    <div class="row form-group">
-													<div class="col-md-12">
-                                                    <label for="hp">Nomor Handphone</label>
-                                    <input class="form-control <?php echo form_error('hp') ? 'is-invalid' : '' ?>" type="number" name="hp" placeholder="Nomor Handphone" />
-                                    <div class="invalid-feedback">
-                                        <?php echo form_error('hp') ?>
-                                    </div>
-                                                </div>
-                                                <div class="row form-group">
-													<div class="col-md-12">
-                                                    <label for="domisili">Domisili</label>
-                                                    <input class="form-control <?php echo form_error('domisili') ? 'is-invalid' : '' ?>" type="text" name="domisili" placeholder="Domisili" />
-                                    <div class="invalid-feedback">
-                                        <?php echo form_error('domisili') ?>
-                                    </div>
-                                                </div>
-                                                </div>
-                                                <div class="col-md-offset-2 col-md-8">
-												<input type="submit" name = "submitdetail" class="btn btn-primary btn-block" value="Submit"/>
-                        </div>
-                    </div>
-          </form>
-         
-
+      <form action="<?= base_url("cdp/addpembayaran") ?>" method="post" enctype="multipart/form-data">
+        <div class="row">
+          <h5>Data Diri Peserta:</h5>
+          <div class="row">
+            <label for="email_peserta">Email Peserta<font color='red'>*</font></label>
+            <input class="form-control <?php echo form_error('email_peserta') ? 'is-invalid' : '' ?>" type="text" name="email_peserta" placeholder="Email Peserta" required />
+            <div class="invalid-feedback">
+              <?php echo form_error('email_peserta') ?>
+            </div>
+          </div>
+          <div class="row">
+            <br>
+            <label for="nama">Nama Peserta<font color='red'>*</font></label>
+            <input class="form-control <?php echo form_error('nama') ? 'is-invalid' : '' ?>" type="text" name="nama" placeholder="Nama Peserta" required />
+            <div class="invalid-feedback">
+              <?php echo form_error('nama') ?>
+            </div>
+          </div>
         </div>
-      
-    </div>
+        <div class="row">
+          <br>
+          <label for="tanggal_lahir">Tanggal Lahir<font color='red'>*</font></label>
+          <input class="form-control <?php echo form_error('tanggal_lahir') ? 'is-invalid' : '' ?>" type="date" name="tanggal_lahir" placeholder="Tanggal Lahir" required />
+          <div class="invalid-feedback">
+            <?php echo form_error('tanggal_lahir') ?>
+          </div>
+        </div>
+        <div class="row">
+          <br>
+          <label for="no_passport">Nomor Passport</label>
+          <input class="form-control <?php echo form_error('no_passport') ? 'is-invalid' : '' ?>" type="text" name="no_passport" placeholder="Nomor Passport" />
+          <div class="invalid-feedback">
+            <?php echo form_error('no_passport') ?>
+          </div>
+        </div>
+        <div class="row">
+          <br>
+          <label for="exp_passport">Expired Passport</label>
+          <input class="form-control <?php echo form_error('exp_passport') ? 'is-invalid' : '' ?>" type="date" name="exp_passport" placeholder="Expired Passport" />
+          <div class="invalid-feedback">
+            <?php echo form_error('exp_passport') ?>
+          </div>
+        </div>
+        <div class="row">
+          <br>
+          <label for="status_tiket">Status Tiket<font color='red'>*</font></label>
+          <select name="status_tiket" class="form-control <?php echo form_error('status_tiket') ? 'is-invalid' : '' ?>" required>
+            <option value="">--Pilih--</option>
+            <option value="Include">Include</option>
+            <option value="Tidak Include">Tidak Include</option>
+          </select>
+          <div class="invalid-feedback">
+            <?php echo form_error('status_tiket') ?>
+          </div>
+        </div>
+        <div class="row">
+          <br>
+          <label for="hp">Nomor Handphone<font color='red'>*</font></label>
+          <input class="form-control <?php echo form_error('hp') ? 'is-invalid' : '' ?>" type="number" name="hp" min=0 placeholder="Nomor Handphone" required />
+          <div class="invalid-feedback">
+            <?php echo form_error('hp') ?>
+          </div>
+        </div>
+        <div class="row">
+          <br>
+          <label for="domisili">Domisili<font color='red'>*</font></label>
+          <input class="form-control <?php echo form_error('domisili') ? 'is-invalid' : '' ?>" type="text" name="domisili" placeholder="Domisili" required />
+          <div class="invalid-feedback">
+            <?php echo form_error('domisili') ?>
+          </div>
+        </div>
+
+        <br>
+        <br>
+        <h5>Layanan /pax :</h5>
+        <div class="row">
+          <label for="upkamar">Upgrade Kamar<font color='red'>*</font></label>
+          <select name="upkamar" class="form-control <?php echo form_error('status_tiket') ? 'is-invalid' : '' ?>" required>
+            <option value="">--Pilih--</option>
+            <option value="Include">Include</option>
+            <option value="Tidak Include">Tidak Include</option>
+          </select>
+        </div>
+        <div class="row">
+          <br>
+          <label for="optional">Opsional<font color='red'>*</font></label>
+          <select name="optional" class="form-control <?php echo form_error('status_tiket') ? 'is-invalid' : '' ?>" required>
+            <option value="">--Pilih--</option>
+            <option value="Include">Include</option>
+            <option value="Tidak Include">Tidak Include</option>
+          </select>
+        </div>
+        <div class="row">
+          <br>
+          <label for="visa">Visa<font color='red'>*</font></label>
+          <select name="visa" class="form-control <?php echo form_error('status_tiket') ? 'is-invalid' : '' ?>" required>
+            <option value="">--Pilih--</option>
+            <option value="Include">Include</option>
+            <option value="Tidak Include">Tidak Include</option>
+          </select>
+        </div>
+        <div class="row">
+          <br>
+          <label for="asuransi">Asuransi<font color='red'>*</font></label>
+          <select name="asuransi" class="form-control <?php echo form_error('status_tiket') ? 'is-invalid' : '' ?>" required>
+            <option value="">--Pilih--</option>
+            <option value="Include">Include</option>
+            <option value="Tidak Include">Tidak Include</option>
+          </select>
+        </div>
+        <div class="row">
+          <br>
+          <label for="simcard">SIM Card<font color='red'>*</font></label>
+          <select name="simcard" class="form-control <?php echo form_error('status_tiket') ? 'is-invalid' : '' ?>" required>
+            <option value="">--Pilih--</option>
+            <option value="Include">Include</option>
+            <option value="Tidak Include">Tidak Include</option>
+          </select>
+        </div>
+        <div class="row">
+          <br>
+          <label for="bagasipergi">Upgrade Bagasi Pergi<font color='red'>*</font></label>
+          <select name="bagasipergi" class="form-control <?php echo form_error('status_tiket') ? 'is-invalid' : '' ?>" required>
+            <option value="">--Pilih--</option>
+            <option value="Include">Include</option>
+            <option value="Tidak Include">Tidak Include</option>
+          </select>
+        </div>
+        <div class="row">
+          <br>
+          <label for="bagasipulang">Upgrade Bagasi Pulang<font color='red'>*</font></label>
+          <select name="bagasipulang" class="form-control <?php echo form_error('status_tiket') ? 'is-invalid' : '' ?>" required>
+            <option value="">--Pilih--</option>
+            <option value="Include">Include</option>
+            <option value="Tidak Include">Tidak Include</option>
+          </select>
+        </div>
+        <br>
+        <?php if ($this->session->userdata('loop_input_psrta') == 1) {
+        ?>
+          <input class="btn btn-primary" type="submit" name="submitdetail" value="Selanjutnya" />
+        <?php
+        } else {
+        ?><input class="btn btn-primary" type="submit" name="submitdetail" value=">> Peserta <?= (($this->session->userdata('jmlh_psrta') - $this->session->userdata('loop_input_psrta') + 2)); ?> " />
+        <?php
+        } ?>
+
+      </form>
   </section>
 
   <footer>
@@ -191,15 +247,15 @@
     </div>
   </footer>
 
-  
+
   <!-- js -->
-  <script src='<?= base_url("assets/js/jquery.js")?>'></script>
-  <script src='<?= base_url("assets/js/bootstrap.min.js")?>'></script>
-  <script src='<?= base_url("assets/js/jquery.smooth-scroll.min.js")?>'></script>
-  <script src='<?= base_url("assets/js/jquery.dlmenu.js")?>'></script>
-  <script src='<?= base_url("assets/js/wow.min.js")?>'></script>
-  <script src='<?= base_url("assets/js/custom.js")?>'></script>
-  <script src='<?= base_url("assets/contactform/contactform.js")?>'></script>
+  <script src='<?= base_url("assets/js/jquery.js") ?>'></script>
+  <script src='<?= base_url("assets/js/bootstrap.min.js") ?>'></script>
+  <script src='<?= base_url("assets/js/jquery.smooth-scroll.min.js") ?>'></script>
+  <script src='<?= base_url("assets/js/jquery.dlmenu.js") ?>'></script>
+  <script src='<?= base_url("assets/js/wow.min.js") ?>'></script>
+  <script src='<?= base_url("assets/js/custom.js") ?>'></script>
+  <script src='<?= base_url("assets/contactform/contactform.js") ?>'></script>
 
 </body>
 
