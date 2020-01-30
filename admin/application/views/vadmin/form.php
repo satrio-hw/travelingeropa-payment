@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <?php $this->load->view("admin/_partials/head.php");  ?>
 
@@ -33,7 +33,7 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Pendaftaran Admin</h1>
                     <!-- DataTales Example -->
-                    <form method="post" action=<?= base_url("cadmin/admin/regisadmin") ?>>
+                    <form method="post" action=<?= site_url("cadmin/admin/regisadmin") ?>>
                         <div class="slider-content">
                             <!-- Inner row 1 -->
                             <div class="row">
@@ -122,7 +122,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href=<?= base_url('admin/Login/logout'); ?>>Logout</a>
+                    <a class="btn btn-primary" href=<?= site_url('admin/Login/logout'); ?>>Logout</a>
                 </div>
             </div>
         </div>

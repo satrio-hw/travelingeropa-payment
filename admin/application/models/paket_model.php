@@ -107,7 +107,7 @@ class paket_model extends CI_Model
     public function update()
     {
         $post = $this->input->post();
-        $this->id_paket = uniqid();
+        $this->id_paket = $post['id'];
         $this->nama = $post["nama"];
         $this->harga = $post["harga"];
         $this->harga_in_landtour = $post["harga_in_landtour"];

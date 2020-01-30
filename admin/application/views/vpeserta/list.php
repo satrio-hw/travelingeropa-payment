@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <?php $this->load->view("admin/_partials/head.php"); ?>
     <style>
@@ -49,7 +49,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Table Peserta</h1>
+                    <h1 class="h3 mb-2 text-gray-800"><?= $pemesan ;?> (<?= $order ;?>), <?= $paket_dipilih; ?></h1>
                     <?php if ($this->session->flashdata('success')) : ?>
                         <div class="alert alert-success" role="alert">
                             <?php echo $this->session->flashdata('success'); ?>
@@ -98,6 +98,35 @@
                                             <th>
                                                 <font color="white">
                                                     Domisili
+                                            </th>
+                                            
+                                            <th>
+                                                <font color="white">
+                                                    UpKmr
+                                            </th>
+                                            <th>
+                                                <font color="white">
+                                                    Opsi
+                                            </th>
+                                            <th>
+                                                <font color="white">
+                                                    Visa
+                                            </th>
+                                            <th>
+                                                <font color="white">
+                                                    Asuransi
+                                            </th>
+                                            <th>
+                                                <font color="white">
+                                                    SIMcard
+                                            </th>
+                                            <th>
+                                                <font color="white">
+                                                    UPbgsPergi
+                                            </th>
+                                            <th>
+                                                <font color="white">
+                                                    UPbgsPul
                                             </th>
                                             <th>
                                                 <font color="white">
@@ -148,10 +177,39 @@
                                                     <font color="black">
                                                         <?= $pesertaa->domisili ?>
                                                 </td>
+                                                
                                                 <td>
                                                     <font color="black">
-                                                        <a href="<?php echo site_url('cpeserta/peserta/edit/' . $pesertaa->id_peserta) ?>" class="btn btn-small"><i class="fas fa-edit"></i> Edit</a>
-                                                        <a onclick="deleteConfirm('<?php echo site_url('cpeserta/peserta/delete/' . $pesertaa->id_peserta) ?>')" href="#!" class="btn btn-small text-danger"><i class="fas fa-trash"></i> Hapus</a>
+                                                        <?= $pesertaa->upkamar ?>
+                                                </td>
+                                                <td>
+                                                    <font color="black">
+                                                        <?= $pesertaa->opsional ?>
+                                                </td>
+                                                <td>
+                                                    <font color="black">
+                                                        <?= $pesertaa->visa ?>
+                                                </td>
+                                                <td>
+                                                    <font color="black">
+                                                        <?= $pesertaa->asuransi ?>
+                                                </td>
+                                                <td>
+                                                    <font color="black">
+                                                        <?= $pesertaa->simcard ?>
+                                                </td>
+                                                <td>
+                                                    <font color="black">
+                                                        <?= $pesertaa->upbagasipergi ?>
+                                                </td>
+                                                <td>
+                                                    <font color="black">
+                                                        <?= $pesertaa->upbagasipulang ?>
+                                                </td>
+                                                <td>
+                                                    <font color="black">
+                                                        <a href="<?php echo site_url('cpeserta/peserta/edit/' . $pesertaa->id_peserta) ?>" class="btn btn-small"><i class="fas fa-edit fa-xs"></i></a>
+                                                        <a onclick="deleteConfirm('<?php echo site_url('cpeserta/peserta/delete/' . $pesertaa->id_peserta) ?>')" href="#!" class="btn btn-small text-danger"><i class="fas fa-trash fa-xs"></i></a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -196,7 +254,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href=<?= base_url('admin/Login/logout'); ?>>Logout</a>
+                    <a class="btn btn-primary" href=<?= site_url('admin/Login/logout'); ?>>Logout</a>
                 </div>
             </div>
         </div>

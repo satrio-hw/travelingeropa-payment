@@ -50,7 +50,7 @@
                 $senderemail = $this->db->get_where('admin', ['role' => 'mailer'])->row_array();
                 $mailer = $senderemail['email'];
                 ?>
-                <a class="dropdown-item" href="<?= base_url('cadmin/admin/editsender') ?>?id=<?= $mailer; ?>">
+                <a class="dropdown-item" href="<?= site_url('cadmin/admin/editsender') ?>?id=<?= $mailer; ?>">
                     <i class="fas fa-mail-bulk fa-sm fa-fw mr-2 text-gray-400"></i>
                     Email Sender
                 </a>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <?php $this->load->view("admin/_partials/head.php");  ?>
 
@@ -64,7 +64,7 @@
                             <h6 class="m-0 font-weight-bold text-primary">Data Pembayaran</h6>
                             <!-- tombol add pembayaran dan export START -->
                             <div align='right'>
-                                <form method="POST" action=<?= base_url("cmanagementpembayaran/mp/topoption") ?>>
+                                <form method="POST" action=<?= site_url("cmanagementpembayaran/mp/topoption") ?>>
                                     <button type="submit" name="submit" class="btn btn-primary btn-user btn-sm">
                                         <i class="fas fa-plus-circle"></i>
                                     </button>
@@ -112,7 +112,7 @@
                                                 </td>
                                                 <td>
                                                     <font color="black">
-                                                        <a href="<?= base_url('cmanagementpembayaran/mp/pemesan') ?>?e=<?= base64_encode($record['email']); ?>?>">
+                                                        <a href="<?= site_url('cmanagementpembayaran/mp/pemesan') ?>?e=<?= base64_encode($record['email']); ?>?>">
                                                             <?php echo  $record['email']; ?>
                                                         </a>
                                                 </td>
@@ -122,13 +122,13 @@
                                                 <td>
                                                     <font color="black"><?php echo  $record['waktu']; ?>
                                                 </td>
-                                                <td><a target="_blank" href="<?= base_url('img_bukti/') . $record['bukti']; ?>"><?php echo  $record['bukti']; ?></a>
+                                                <td><a target="_blank" href="<?= base_url('img_bukti/'. $record['bukti']) ; ?>"><?php echo  $record['bukti']; ?></a>
                                                 <td>
                                                     <div>
                                                         <?php if ($record['konfirmasi'] == 'none') { ?>
-                                                            <a onclick="return confirm('Anda yakin untuk melakukan konfirmasi?')" href="<?= base_url('cmanagementpembayaran/mp/konfirmasi') ?>?id=<?= base64_encode($record['id_order']); ?>&type=<?= $record['pembayaran']; ?>&e=<?= base64_encode($record['email']) ?>" class="btn btn-success btn-user"><i class="fas fa-check-circle"></i></a>
-                                                            <a href="<?= base_url('cmanagementpembayaran/mp/pending') ?>?id=<?= base64_encode($record['id_order']); ?>&type=<?= $record['pembayaran']; ?>&e=<?= base64_encode($record['email']) ?>" class="btn btn-info btn-user"><i class="fas fa-tasks"></i></a>
-                                                            <a onclick="return confirm('Anda yakin untuk melakukan pembatalan?')" href="<?= base_url('cmanagementpembayaran/mp/tolak') ?>?id=<?= base64_encode($record['id_order']); ?>&type=<?= $record['pembayaran']; ?>&e=<?= base64_encode($record['email']) ?>" class="btn btn-danger btn-user"><i class="fas fa-times-circle"></i></a>
+                                                            <a onclick="return confirm('Anda yakin untuk melakukan konfirmasi?')" href="<?= site_url('cmanagementpembayaran/mp/konfirmasi') ?>?id=<?= base64_encode($record['id_order']); ?>&type=<?= $record['pembayaran']; ?>&e=<?= base64_encode($record['email']) ?>" class="btn btn-success btn-user"><i class="fas fa-check-circle"></i></a>
+                                                            <a href="<?= site_url('cmanagementpembayaran/mp/pending') ?>?id=<?= base64_encode($record['id_order']); ?>&type=<?= $record['pembayaran']; ?>&e=<?= base64_encode($record['email']) ?>" class="btn btn-info btn-user"><i class="fas fa-tasks"></i></a>
+                                                            <a onclick="return confirm('Anda yakin untuk melakukan pembatalan?')" href="<?= site_url('cmanagementpembayaran/mp/tolak') ?>?id=<?= base64_encode($record['id_order']); ?>&type=<?= $record['pembayaran']; ?>&e=<?= base64_encode($record['email']) ?>" class="btn btn-danger btn-user"><i class="fas fa-times-circle"></i></a>
                                                         <?php } else if ($record['konfirmasi'] == 'confirmed') {
                                                             echo '<font color="green">TERKONFIRMASI</font>';
                                                         } else if ($record['konfirmasi'] == 'REJECTED') {
@@ -185,7 +185,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href=<?= base_url('admin/Login/logout'); ?>>Logout</a>
+                    <a class="btn btn-primary" href=<?= site_url('admin/Login/logout'); ?>>Logout</a>
                 </div>
             </div>
         </div>

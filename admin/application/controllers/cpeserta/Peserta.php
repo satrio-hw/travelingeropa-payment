@@ -6,11 +6,12 @@ class Peserta extends CI_Controller
     {
         parent::__construct();
         $this->load->model('peserta_model');
+        $this->load->model('paket_model');
         $this->load->library('form_validation');
 
         if ($this->session->userdata('email') == false || $this->session->userdata('role') == false) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">AKSES DITOLAK !!! Silahkan masukan email dan password yang terdaftar</div>');
-            redirect(base_url('admin/Login'));
+            redirect(site_url('admin/Login'));
         }
     }
 
@@ -23,8 +24,14 @@ class Peserta extends CI_Controller
     public function berorder()
     {
         $id = $_GET['id'];
-
-        $data["peserta"] = $this->peserta_model->getByIdOrder($id);
+        $namapaket=$this->paket_model->getById($_GET['pkt']);
+        $namapaket=(array)$namapaket;
+        $data=[
+                "peserta"=> $this->peserta_model->getByIdOrder($id),
+                "paket_dipilih" => $namapaket['nama'],
+                "order" => $id,
+                "pemesan" => $_GET['mail']
+                ];
         // var_dump($data["peserta"]);
         $this->load->view("vpeserta/list", $data);
         // $data["peserta"] = $this->peserta_model->getById($id);

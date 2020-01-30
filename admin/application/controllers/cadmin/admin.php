@@ -1,6 +1,6 @@
 <?php
 
-class admin extends CI_Controller
+class Admin extends CI_Controller
 {
     public function __construct()
     {
@@ -10,7 +10,7 @@ class admin extends CI_Controller
 
         if ($this->session->userdata('email') == false || $this->session->userdata('role') == false) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">AKSES DITOLAK !!! Silahkan masukan email dan password yang terdaftar</div>');
-            redirect(base_url('admin/Login'));
+            redirect(site_url('admin/Login'));
         }
     }
 

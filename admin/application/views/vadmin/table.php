@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <?php $this->load->view("admin/_partials/head.php"); ?>
 
@@ -72,7 +72,7 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-                            <form method="POST" action=<?= base_url("cadmin/admin/form") ?>>
+                            <form method="POST" action=<?= site_url("cadmin/admin/form") ?>>
                                 <div align="right">
                                     <button type="submit" name="submit" class="btn btn-primary btn-user btn-sm">
                                         <i class="fas fa-user-plus"></i>
@@ -151,9 +151,9 @@
                                                 <td>
                                                     <div align="center">
                                                         <?php if ($record['role'] != 'mailer') { ?>
-                                                            <a href="<?= base_url('cadmin/admin/editlist') ?>?id=<?= base64_encode($record['email']); ?>" class="btn btn-primary btn-user"><i class="fas fa-edit fa-sm"></i></a>
+                                                            <a href="<?= site_url('cadmin/admin/editlist') ?>?id=<?= base64_encode($record['email']); ?>" class="btn btn-primary btn-user"><i class="fas fa-edit fa-sm"></i></a>
                                                         <?php } ?>
-                                                        <a href="<?= base_url('cadmin/admin/deletelist') ?>?id=<?= base64_encode($record['email']); ?>" class="btn btn-danger btn-user"><i class="fas fa-trash-alt fa-sm"></i></a>
+                                                        <a href="<?= site_url('cadmin/admin/deletelist') ?>?id=<?= base64_encode($record['email']); ?>" class="btn btn-danger btn-user"><i class="fas fa-trash-alt fa-sm"></i></a>
                                                         <?php
                                                         if (isset($record_todo)) {
                                                             $this->load->view("vadmin/modals.php", $record_todo);
@@ -204,7 +204,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href=<?= base_url('admin/Login/logout'); ?>>Logout</a>
+                    <a class="btn btn-primary" href=<?= site_url('admin/Login/logout'); ?>>Logout</a>
                 </div>
             </div>
         </div>

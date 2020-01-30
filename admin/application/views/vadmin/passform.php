@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <?php $this->load->view("admin/_partials/head.php");  ?>
 
@@ -34,7 +34,7 @@
                     <h1 class="h3 mb-2 text-gray-800">Konfigurasi Password: <?= $email; ?></h1> <?= $this->session->flashdata('message'); ?>
                     <?php
                                                                                                 if ($this->session->userdata('role') == 'spadm') : ?>
-                        <form method="POST" action=<?= base_url("cadmin/admin/change_pass") ?>>
+                        <form method="POST" action=<?= site_url("cadmin/admin/change_pass") ?>>
                             <div align="right">
                                 <input type="submit" name="reset_admin" class="btn btn-danger btn-user btn-sm" value="Reset password as Super Admin" />
                             </div>
@@ -103,7 +103,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href=<?= base_url('admin/Login/logout'); ?>>Logout</a>
+                    <a class="btn btn-primary" href=<?= site_url('admin/Login/logout'); ?>>Logout</a>
                 </div>
             </div>
         </div>

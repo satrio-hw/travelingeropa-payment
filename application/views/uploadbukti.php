@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>traveling eropa </title>
-  <meta charset="utf-8" />
+  
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- css -->
   <link href=<?= base_url("assets/css/bootstrap.min.css") ?> rel="stylesheet" media="screen">
@@ -37,33 +37,17 @@
 </head>
 
 <body>
-  <div class="menu-area">
-    <div id="dl-menu" class="dl-menuwrapper">
-      <button class="dl-trigger">Open Menu</button>
-      <ul class="dl-menu">
-        <li>
-          <a href="#intro">Home</a>
-        </li>
-        <li><a href="<?= base_url('cdp'); ?>">Form DP</a></li>
-        <li><a href="<?= base_url('ccicilan'); ?>">Form Cicilan</a></li>
-      </ul>
-    </div>
-    <!-- /dl-menuwrapper -->
-  </div>
-  </div>
-
   <!-- intro area -->
+
   <div id="intro">
 
     <div class="intro-text">
       <div class="container">
         <div class="row">
-
-
           <div class="col-md-12">
 
             <div class="brand">
-              <h1><a href=<?= base_url('maincontrol') ?>>TRAVELING EROPA</a>
+              <h1><a onclick="return confirm('Kembali ke halaman pertama?')" href='https://travelingeropapay.com'><img src="<?= base_url('assets/img/logo_ori.png'); ?>" width=300 height=120/> </a>
                 <div class="line-spacer"></div>
                 <p><span> FORM DOWNPAYMENT </span></p>
             </div>
@@ -262,11 +246,11 @@
               </div>
               <div class="form-group">
                 <label>Upload Bukti Pembayaran ( <?= '<' ?> 5MB ):</label>
-                <input type="file" name='bukti'>
+                <input type="file" name='bukti'required>
               </div>
 
               <div class="col-md-offset-2 col-md-8">
-                <input type="submit" name="submitaddform" class="btn btn-primary btn-block" value="Next" />
+                <input onclick="return confirm('PASTIKAN DATA YANG ANDA MASUKAN BENAR ! \n\n Upload bukti bayar?')" type="submit" name="submitaddform" class="btn btn-primary btn-block" value="Next" />
               </div>
             </div>
           </form>

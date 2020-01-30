@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <?php $this->load->view("admin/_partials/head.php");  ?>
 
@@ -36,7 +36,7 @@
                     <h1 class="h3 mb-2 text-gray-800">Edit Profil Admin</h1>
                     <?= $this->session->flashdata('message'); ?>
                     <!-- DataTales Example -->
-                    <form method="post" action=<?= base_url("cadmin/admin/editlist") ?>>
+                    <form method="post" action=<?= site_url("cadmin/admin/editlist") ?>>
                         <div class="slider-content">
                             <!-- Inner row 1 -->
                             <div class="row">
@@ -76,7 +76,7 @@
                                         <input type="hidden" name="email_record" id="email_record" value=<?= $email; ?> />
                                         <input onclick="return confirm('Anda yakin untuk melakukan perubahan data admin?')" type="submit" name="submit" class="btn btn-primary btn-user" value="Konfirmasi perubahan" />
                     </form>
-                    <form method="post" action=<?= base_url("cadmin/admin/change_pass") ?>>
+                    <form method="post" action=<?= site_url("cadmin/admin/change_pass") ?>>
                         <input type="hidden" name="email_record" id="email_record" value=<?= $email; ?> />
                         <div align="right">
                             <button type="submit" name="submit" class="btn btn-secondary btn-user btn-sm"><i class="fas fa-key"></i>
@@ -126,7 +126,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href=<?= base_url('admin/Login/logout'); ?>>Logout</a>
+                    <a class="btn btn-primary" href=<?= site_url('admin/Login/logout'); ?>>Logout</a>
                 </div>
             </div>
         </div>

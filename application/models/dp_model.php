@@ -1,5 +1,5 @@
 <?php
-class dp_model extends CI_Model
+class Dp_model extends CI_Model
 {
     public function doLogin()
     {

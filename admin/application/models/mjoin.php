@@ -1,6 +1,6 @@
 <?php
 
-class mjoin extends CI_Model
+class Mjoin extends CI_Model
 {
     public function jpaket()
     {

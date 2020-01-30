@@ -1,6 +1,6 @@
 <?php
 
-class m_login extends CI_Model
+class M_login extends CI_Model
 {
     private $_table = "admin";
 
@@ -9,8 +9,10 @@ class m_login extends CI_Model
         $post = $this->input->post();
 
         // cari user berdasarkan email dan username
-        $this->db->where('email', $post["email"]);
-        $user = $this->db->get($this->_table)->row();
+#        $this->db->where('email', $post["email"]);
+ #       $user = $this->db->get($this->_table)->row();
+        $sql ="SELECT * FROM `admin` WHERE `role` <>  'mailer' AND `email` = '".$post['email']."';";
+        $user = $this->db->query($sql)->row();
 
         // jika user terdaftar
         if ($user) {
@@ -27,7 +29,8 @@ class m_login extends CI_Model
             }
         }
         $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email atau Password yang dimasukan salah</div>');
+        var_dump($user);
         // login gagal
-        return false;
+        #return false;
     }
 }

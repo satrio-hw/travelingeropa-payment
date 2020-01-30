@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <?php $this->load->view("admin/_partials/head.php") ?>
 
@@ -51,7 +51,7 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Penanggung Jawab</h1>
-                    <form method="post" action=<?= base_url("cmanagementpembayaran/mp/editpemesan") ?> enctype='multipart/form-data'>
+                    <form method="post" action=<?= site_url("cmanagementpembayaran/mp/editpemesan") ?> enctype='multipart/form-data'>
                         <a href="<?= base_url('cmanagementpembayaran/mp/pemesan'); ?>?e=table"><i class="fas fa-list"></i>Lihat Semua Penanggung Jawab</a>
                         <table class="table table-bordered" width="100%" cellspacing="0">
                             <thead bgcolor="#4655f2">

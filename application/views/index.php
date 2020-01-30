@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>traveling eropa </title>
-  <meta charset="utf-8" />
+  
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- css -->
   <link href=<?= base_url("assets/css/bootstrap.min.css") ?> rel="stylesheet" media="screen">
@@ -17,21 +17,20 @@
     Author URL: https://bootstrapmade.com
   ======================================================= -->
 </head>
-<!-- intro area -->
-<div id="intro">
+<body>
+  <!-- intro area -->
 
-  <div class="intro-text">
-    <?php $this->session->sess_destroy(); ?>
-    <div class="container">
-      <div class="row">
+  <div id="intro">
 
-        <div class="col-md-12">
+    <div class="intro-text">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
 
-          <div class="brand">
-
-            <h1><a href=<?= base_url('maincontrol') ?>>TRAVELING EROPA</a>
+            <div class="brand">
+              <h1><a onclick="return confirm('Kembali ke halaman pertama?')" href='https://travelingeropapay.com'><img src="<?= base_url('assets/img/logo_ori.png'); ?>" width=300 height=120/> </a>
               <div class="line-spacer"></div>
-              <p><span>Your Best Travel Partner</span></p>
+              <p><span> </span></p>
           </div>
         </div>
       </div>

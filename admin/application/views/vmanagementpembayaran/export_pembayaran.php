@@ -23,53 +23,53 @@ foreach ($packages as $paket) :
 
             <thead>
                 <tr>
-                    <th>Nama Paket</th>
-                    <th>:</th>
+                    <th bgcolor='#56e2ef'>Nama Paket</th>
+                    <th bgcolor='#56e2ef'>:</th>
                     <th><?= $paket['nama'] ?></th>
                 </tr>
                 <tr>
-                    <th>Harga Paket</th>
-                    <th>:</th>
+                    <th bgcolor='#56e2ef'>Harga Paket</th>
+                    <th bgcolor='#56e2ef'>:</th>
                     <th><?= $paket['harga'] ?></th>
                 </tr>
                 <tr>
-                    <th>Harga Land Tour</th>
-                    <th>:</th>
+                    <th bgcolor='#56e2ef'>Harga Land Tour</th>
+                    <th bgcolor='#56e2ef'>:</th>
                     <th><?= $paket['harga_in_landtour'] ?></th>
                 </tr>
                 <tr>
-                    <th>Upgrade Kamar</th>
-                    <th>:</th>
+                    <th bgcolor='#56e2ef'>Upgrade Kamar</th>
+                    <th bgcolor='#56e2ef'>:</th>
                     <th><?= $paket['upgrade_kamar'] ?></th>
                 </tr>
                 <tr>
-                    <th>Opsional</th>
-                    <th>:</th>
+                    <th bgcolor='#56e2ef'>Opsional</th>
+                    <th bgcolor='#56e2ef'>:</th>
                     <th><?= $paket['keterangan_tambahan'] ?></th>
                 </tr>
                 <tr>
-                    <th>Visa</th>
-                    <th>:</th>
+                    <th bgcolor='#56e2ef'>Visa</th>
+                    <th bgcolor='#56e2ef'>:</th>
                     <th><?= $paket['visa'] ?></th>
                 </tr>
                 <tr>
-                    <th>Asuransi</th>
-                    <th>:</th>
+                    <th bgcolor='#56e2ef'>Asuransi</th>
+                    <th bgcolor='#56e2ef'>:</th>
                     <th><?= $paket['asuransi'] ?></th>
                 </tr>
                 <tr>
-                    <th>SIM Card</th>
-                    <th>:</th>
+                    <th bgcolor='#56e2ef'>SIM Card</th>
+                    <th bgcolor='#56e2ef'>:</th>
                     <th><?= $paket['simcard'] ?></th>
                 </tr>
                 <tr>
-                    <th>Upgrade Bagasi 1-way</th>
-                    <th>:</th>
+                    <th bgcolor='#56e2ef'>Upgrade Bagasi 1-way</th>
+                    <th bgcolor='#56e2ef'>:</th>
                     <th><?= $paket['upgrade_bagasi'] ?></th>
                 </tr>
                 <tr>
-                    <th>Jml peserta</th>
-                    <th>:</th>
+                    <th bgcolor='#56e2ef'>Jml peserta</th>
+                    <th bgcolor='#56e2ef'>:</th>
                     <th><?php
                         $sql = "SELECT COUNT(email_peserta) as totalpeserta FROM peserta WHERE peserta.id_order = $idorder";
                         $totalpeserta = $this->db->query($sql)->result_array();
@@ -77,8 +77,8 @@ foreach ($packages as $paket) :
                         ?></th>
                 </tr>
                 <tr>
-                    <th>Jml Incl. Tiket</th>
-                    <th>:</th>
+                    <th bgcolor='#56e2ef'>Jml Incl. Tiket</th>
+                    <th bgcolor='#56e2ef'>:</th>
                     <th><?php
                         $sql = "SELECT COUNT(email_peserta) as totalpeserta FROM peserta WHERE peserta.id_order = $idorder and peserta.status_tiket = 'Include'";
                         $totalpeserta = $this->db->query($sql)->result_array();
@@ -86,8 +86,8 @@ foreach ($packages as $paket) :
                         ?></th>
                 </tr>
                 <tr>
-                    <th>Jml Excl. Tiket</th>
-                    <th>:</th>
+                    <th bgcolor='#56e2ef'>Jml Excl. Tiket</th>
+                    <th bgcolor='#56e2ef'>:</th>
                     <th><?php
                         $sql = "SELECT COUNT(email_peserta) as totalpeserta FROM peserta WHERE peserta.id_order = $idorder and peserta.status_tiket = 'Tidak Include'";
                         $totalpeserta = $this->db->query($sql)->result_array();
@@ -95,10 +95,10 @@ foreach ($packages as $paket) :
                         ?></th>
                 </tr>
                 <tr>
-                    <th>Jml Peserta cancel</th>
-                    <th>:</th>
+                    <th bgcolor='#56e2ef'>Jml Peserta cancel</th>
+                    <th bgcolor='#56e2ef'>:</th>
                     <th><?php
-                        $sql = "SELECT COUNT(email_peserta) as totalpeserta FROM peserta,pembayaran WHERE peserta.id_order = '20200121000117000000' and peserta.id_order = pembayaran.id_order and pembayaran.konfirmasi = 'REJECTED' ";
+                        $sql = "SELECT COUNT(email_peserta) as totalpeserta FROM peserta,pembayaran WHERE peserta.id_order = $idorder and peserta.id_order = pembayaran.id_order and pembayaran.konfirmasi = 'REJECTED' ";
                         $totalpeserta = $this->db->query($sql)->result_array();
                         echo $totalpeserta[0]['totalpeserta'];
                         ?></th>
@@ -108,7 +108,7 @@ foreach ($packages as $paket) :
         <br>
         <table border="1" width="100%">
             <thead>
-                <tr>
+                <tr bgcolor='#56e2ef'>
                     <th>Nama Peserta</th>
                     <th>Tgl Lahir</th>
                     <th>No.Paspor</th>
@@ -173,46 +173,88 @@ foreach ($packages as $paket) :
                         <td><?php echo  $peserta['upbagasipulang']; ?></td>
                         <td></td>
 
-                        <td><?php
+                        <?php
                             $DP = $this->db->get_where('pembayaran', ['id_order' => $idorder, 'pembayaran' => 'DP'])->result_array();
                             if ($DP == Null) {
-                                echo '-';
+                                echo '<td>-';
                             } else {
+                                if ($DP[0]['konfirmasi']=='confirmed'){
+                                    echo '<td bgcolor="#d5f88f">';
+                                }else if($DP[0]['konfirmasi']=='REJECTED'){
+                                    echo '<td bgcolor="#f8bb8f">';
+                                }else{
+                                    echo '<td bgcolor="#e2e8e9">';
+                                }
                                 echo "(" . $DP[0]['waktu'] . ") <br>" . $DP[0]['konfirmasi'] . " : <br>" . $DP[0]['admin'];
                             } ?></td>
-                        <td><?php
+                        <?php
                             $cicilan1 = $this->db->get_where('pembayaran', ['id_order' => $idorder, 'pembayaran' => 'cicilan1'])->result_array();
                             if ($cicilan1 == Null) {
-                                echo '-';
+                                echo '<td>-';
                             } else {
+                                if ($cicilan1[0]['konfirmasi']=='confirmed'){
+                                    echo '<td bgcolor="#d5f88f">';
+                                }else if($cicilan1[0]['konfirmasi']=='REJECTED'){
+                                    echo '<td bgcolor="#f8bb8f">';
+                                }else{
+                                    echo '<td bgcolor="#e2e8e9">';
+                                }
                                 echo "(" . $cicilan1[0]['waktu'] . ") <br>" . $cicilan1[0]['konfirmasi'] . " : <br>" . $cicilan1[0]['admin'];
                             } ?></td>
-                        <td><?php
+                        <?php
                             $cicilan2 = $this->db->get_where('pembayaran', ['id_order' => $idorder, 'pembayaran' => 'cicilan2'])->result_array();
                             if ($cicilan2 == Null) {
-                                echo '-';
+                                echo '<td>-';
                             } else {
+                                if ($cicilan2[0]['konfirmasi']=='confirmed'){
+                                    echo '<td bgcolor="#d5f88f">';
+                                }else if($cicilan2[0]['konfirmasi']=='REJECTED'){
+                                    echo '<td bgcolor="#f8bb8f">';
+                                }else{
+                                    echo '<td bgcolor="#e2e8e9">';
+                                }
                                 echo "(" . $cicilan2[0]['waktu'] . ") <br>" . $cicilan2[0]['konfirmasi'] . " : <br>" . $cicilan2[0]['admin'];
                             } ?></td>
-                        <td><?php
+                        <?php
                             $cicilan3 = $this->db->get_where('pembayaran', ['id_order' => $idorder, 'pembayaran' => 'cicilan3'])->result_array();
                             if ($cicilan3 == Null) {
-                                echo '-';
+                                echo '<td>-';
                             } else {
+                                if ($cicilan3[0]['konfirmasi']=='confirmed'){
+                                    echo '<td bgcolor="#d5f88f">';
+                                }else if($cicilan3[0]['konfirmasi']=='REJECTED'){
+                                    echo '<td bgcolor="#f8bb8f">';
+                                }else{
+                                    echo '<td bgcolor="#e2e8e9">';
+                                }
                                 echo "(" . $cicilan3[0]['waktu'] . ") <br>" . $cicilan3[0]['konfirmasi'] . " : <br>" . $cicilan3[0]['admin'];
                             } ?></td>
-                        <td><?php
+                        <?php
                             $cicilan4 = $this->db->get_where('pembayaran', ['id_order' => $idorder, 'pembayaran' => 'cicilan4'])->result_array();
                             if ($cicilan4 == Null) {
-                                echo '-';
+                                echo '<td>-';
                             } else {
+                                if ($cicilan4[0]['konfirmasi']=='confirmed'){
+                                    echo '<td bgcolor="#d5f88f">';
+                                }else if($cicilan4[0]['konfirmasi']=='REJECTED'){
+                                    echo '<td bgcolor="#f8bb8f">';
+                                }else{
+                                    echo '<td bgcolor="#e2e8e9">';
+                                }
                                 echo "(" . $cicilan4[0]['waktu'] . ") <br>" . $cicilan4[0]['konfirmasi'] . " : <br>" . $cicilan4[0]['admin'];
                             } ?></td>
-                        <td><?php
+                        <?php
                             $pelunasan = $this->db->get_where('pembayaran', ['id_order' => $idorder, 'pembayaran' => 'pelunasan'])->result_array();
                             if ($pelunasan == Null) {
-                                echo '-';
+                                echo '<td>-';
                             } else {
+                                if ($pelunasan[0]['konfirmasi']=='confirmed'){
+                                    echo '<td bgcolor="#d5f88f">';
+                                }else if($pelunasan[0]['konfirmasi']=='REJECTED'){
+                                    echo '<td bgcolor="#f8bb8f">';
+                                }else{
+                                    echo '<td bgcolor="#e2e8e9">';
+                                }
                                 echo "(" . $pelunasan[0]['waktu'] . ") <br>" . $pelunasan[0]['konfirmasi'] . " : <br>" . $pelunasan[0]['admin'];
                             } ?></td>
                     </tr>
@@ -228,19 +270,19 @@ endforeach; ?>
 <?php $pj = $this->db->get('pemesan')->result_array();
 ?>
 <table border="1" width="100%">
-    <thead bgcolor="#4655f2">
-        <tr>
+    <thead>
+        <tr  bgcolor="#56e2ef">
             <th>
-                <font color="black">Email PJ</font>
+                <font bgcolor="black">Email PJ</font>
             </th>
             <th>
-                <font color="black">Nama PJ</font>
+                <font bgcolor="black">Nama PJ</font>
             </th>
             <th>
-                <font color="black">No. Hp</font>
+                <font bgcolor="black">No. Hp</font>
             </th>
             <th>
-                <font color="black">Tanggal Lahir</font>
+                <font bgcolor="black">Tanggal Lahir</font>
             </th>
         </tr>
     </thead>

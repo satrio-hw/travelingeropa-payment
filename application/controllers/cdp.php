@@ -1,5 +1,5 @@
 <?php
-class cdp extends CI_Controller
+class Cdp extends CI_Controller
 {
     public function __construct()
     {
@@ -131,7 +131,7 @@ class cdp extends CI_Controller
             $ex = implode('', array_reverse($extention, true));
             if ($filename = '') {
             } else {
-                $config_upload['upload_path'] = './admin/img_bukti';
+                $config_upload['upload_path'] = 'admin/img_bukti';
                 $config_upload['allowed_types'] = 'jpg|png|jpeg|PNG|gif';
                 $config_upload['max_size']     = '6000';
                 $config_upload['file_name']     = strval(date('HiYmds'));
@@ -145,6 +145,7 @@ class cdp extends CI_Controller
                     redirect('cindex');
                 } else {
                     $idorder = date('YmdHisu');
+                    
                     ### input tabel pembayaran ##
                     $datapembayaran = [
                         'pembayaran' => $this->session->userdata('tipe_bayar'),
@@ -156,6 +157,7 @@ class cdp extends CI_Controller
                         'konfirmasi' => 'none'
                     ];
                     $this->db->insert('pembayaran', $datapembayaran);
+                    
                     #input tabel order
                     $dataorder = [
                         'id_order' => $idorder,
@@ -163,6 +165,7 @@ class cdp extends CI_Controller
                         'email_pemesan' => $this->session->userdata('email_pemesan')
                     ];
                     $this->db->insert('order', $dataorder);
+                    
                     #input tabel peserta
                     for ($i = 0; $i < intval($this->session->userdata('jmlh_psrta')); $i++) {
                         $datapeserta = [
@@ -210,21 +213,20 @@ class cdp extends CI_Controller
                 $flag = 'cekemail';
             }
             ### Tombol Bayar Cicilan
-            if (isset($_POST['cicilan'])) {
+            if (isset($_POST['upcicilan'])) {
                 $this->form_validation->set_rules('namapj', 'Nama Penanggung Jawab', 'required|trim');
                 $this->form_validation->set_rules('pembayaran', 'Pembayaran', 'required|trim');
                 $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
                 $this->form_validation->set_rules('paket_pilihan', 'Paket Pilihan', 'required|trim');
                 $this->form_validation->set_rules('pembayaran', 'Status Pembayaran', 'required|trim');
                 $this->form_validation->set_rules('idorder', 'idorder', 'required|trim');
-                $flag = 'cicilan';
+                $flag = 'upcicilan';
             }
             // input salah
             if ($this->form_validation->run() == false) {
-                echo 'haaaii';
                 echo validation_errors();
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role = "alert">Input salah, cek kembali data yang diinput</div>');
-                #redirect(base_url('cindex'));
+                redirect(base_url('cindex'));
 
                 ### Lolos Validasi
             } else {
@@ -247,7 +249,7 @@ class cdp extends CI_Controller
                 $this->session->set_userdata('jmlh_psrta', $loop);
 
                 ### Bila email BELUM terdaftar di table ORDER
-                if ($stat_email == Null and $flag == 'cekemail') {
+                if ($stat_email == Null or $flag == 'cekemail') {
                     $data = [
                         'pembayaran' => $this->input->post('pembayaran'),
                         'email' => htmlspecialchars($this->input->post('email', true)),
@@ -277,33 +279,35 @@ class cdp extends CI_Controller
                     $this->load->view('peserta', $data);
 
                     ### Bila Email SUDAH terdaftar di table ORDER (bukan PJ baru)
-                } else if ($stat_email == Null and $flag == 'cicilan') {
+                } else if ($stat_email == Null and $flag == 'upcicilan') {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role = "alert">Tidak ditemukan data cicilan untuk email yang dimasukan</div>');
                     redirect(base_url('cindex'));
                 } else {
                     $idlunas = array();
-                    ### Cek order yang sudah pernah dibayar
-                    foreach ($stat_email as $order) {
-                        $idorder = array(strval($order['id_order']));
-                        $data_pembayaran = $this->pembayaran_model->getPembayaranByIDresarray($order['id_order']);
-
+                    ### Cek order-order yang sudah pernah dibayar untuk email yang dimasukan
+                    #foreach ($stat_email as $order) {
+                     #   $idorder = array(strval($order['id_order']));
+#                        $data_pembayaran = $this->pembayaran_model->getPembayaranByIDresarray($order['id_order']);
+                        $data_pembayaran = $this->pembayaran_model->getPembayaranByIDresarray($this->input->post('idorder'));
+                        ### Cek pembayaran yang apakah pembayaran yang dimasukan 
                         foreach ($data_pembayaran as $lunas) {
                             ### Array Pembayaran yang sudah dilunasi (by ID Order)
                             if ($lunas['pembayaran'] == $this->input->post('pembayaran')) {
                                 $flagpembayaran = 'done';
                             }
                         }
+                        
                         if ($flagpembayaran == 'done') {
-                            $this->session->set_flashdata('message', '<div class="alert alert-danger" role = "alert">Cicilan untuk' . $lunas['pembayaran'] . ' sudah pernah dibayarkan</div>');
+                            $this->session->set_flashdata('message', '<div class="alert alert-danger" role = "alert">Cicilan untuk <b>' . $this->input->post('pembayaran') . '</b> sudah pernah dibayarkan</div>');
                             $data = [
                                 'id_order' => $this->db->get_where('order', ['email_pemesan' => htmlspecialchars($this->input->post('email', true))])->result_array()
                             ];
                             // var_dump($data['id_order'][0]['id_paket']);
                             $this->load->view('cicilan', $data);
                         } else {
-                            $cektabel = $this->db->get_where('pembayaran', ['pembayaran' => $this->input->post('pembayaran'), 'id_order' => $this->input->post('idorder')])->result_array();
+                            #$cektabel = $this->db->get_where('pembayaran', ['pembayaran' => $this->input->post('pembayaran'), 'id_order' => $this->input->post('idorder')])->result_array();
                             // var_dump($cektabel);
-                            if ($cektabel == null) {
+                            #if ($cektabel == null) {
                                 $file_bukti = $_FILES['bukti']['name'];
                                 $extention = array();
                                 $file_bukti = $_FILES['bukti']['name'];
@@ -317,7 +321,7 @@ class cdp extends CI_Controller
 
                                 if ($filename = '') {
                                 } else {
-                                    $config_upload['upload_path'] = './admin/img_bukti';
+                                    $config_upload['upload_path'] = 'admin/img_bukti';
                                     $config_upload['allowed_types'] = 'jpg|png|jpeg|PNG|gif';
                                     $config_upload['max_size']     = '6000';
                                     $config_upload['file_name']     = strval(date('HiYmds'));
@@ -326,7 +330,7 @@ class cdp extends CI_Controller
 
                                     if (!$this->upload->do_upload('bukti')) {
                                         // echo $this->upload->display_errors();
-                                        $this->session->set_flashdata('message', '<div class="alert alert-danger" role = "alert">Gagal Upload Gambar Bukti</div>');
+                                        $this->session->set_userdata('stat', 'uploadgagal');
                                         redirect('cindex');
                                     } else {
                                         $datapembayaran = [
@@ -340,18 +344,18 @@ class cdp extends CI_Controller
                                         ];
 
                                         $this->db->insert('pembayaran', $datapembayaran);
-                                        $this->session->set_flashdata('message', '<div class="alert alert-success" role = "alert">Data pembayaran berhasil ditambah</div>');
+                                        $this->session->set_userdata('stat', 'uploadberhasil');
                                         redirect('cindex');
                                     }
                                 }
-                            } else {
-                                $this->session->set_flashdata('message', '<div class="alert alert-danger" role = "alert">Jenis pembayaran serupa telah dibayarkan, cek kembali email dan jenis pembayaran</div>');
-                                $datapaket = [
-                                    'listpaket' => $this->paket_model->getAll()
-                                ];
-                                $this->load->view('cicilan');
-                            }
-                        }
+                           # } else {
+                           #     $this->session->set_flashdata('message', '<div class="alert alert-danger" role = "alert">Jenis pembayaran serupa telah dibayarkan, cek kembali email dan jenis pembayaran</div>');
+                        #        $datapaket = [
+                         #           'listpaket' => $this->paket_model->getAll()
+                          #      ];
+                           #     $this->load->view('cicilan');
+                            #}
+                        #}
                     }
                 }
             }

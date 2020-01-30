@@ -1,6 +1,6 @@
 <?php
 
-class mp extends CI_Controller
+class Mp extends CI_Controller
 {
     public function __construct()
     {
@@ -12,7 +12,7 @@ class mp extends CI_Controller
 
         if ($this->session->userdata('email') == false || $this->session->userdata('role') == false) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">AKSES DITOLAK !!! Silahkan masukan email dan password yang terdaftar</div>');
-            redirect(base_url('admin/Login'));
+            redirect(site_url('admin/Login'));
         }
     }
 
@@ -39,7 +39,7 @@ class mp extends CI_Controller
         $this->session->set_userdata('idorder', base64_decode($_GET['id']));
         $this->session->set_userdata('type', $_GET['type']);
         $this->session->set_userdata('konfirmasi', 'diterima');
-        redirect(base_url('cmanagementpembayaran/mailer'));
+        redirect(site_url('cmanagementpembayaran/mailer'));
     }
 
     public function tolak()
@@ -48,14 +48,14 @@ class mp extends CI_Controller
         $this->session->set_userdata('idorder', base64_decode($_GET['id']));
         $this->session->set_userdata('type', $_GET['type']);
         $this->session->set_userdata('konfirmasi', 'ditolak');
-        redirect(base_url('cmanagementpembayaran/mailer'));
+        redirect(site_url('cmanagementpembayaran/mailer'));
     }
 
     public function pending()
     {
         if (isset($_POST['submitreq'])) {
             $this->session->set_userdata('req', $this->input->post('req'));
-            redirect(base_url('cmanagementpembayaran/mailer'));
+            redirect(site_url('cmanagementpembayaran/mailer'));
         } else {
             $this->session->set_userdata('sendto', base64_decode($_GET['e']));
             $this->session->set_userdata('idorder', base64_decode($_GET['id']));
@@ -187,6 +187,7 @@ class mp extends CI_Controller
                         'konfirmasi' => 'none'
                     ];
                     $this->db->insert('pembayaran', $datapembayaran);
+                    
                     #input tabel order
                     $dataorder = [
                         'id_order' => $idorder,
@@ -194,14 +195,18 @@ class mp extends CI_Controller
                         'email_pemesan' => $this->session->userdata('email_pemesan')
                     ];
                     $this->db->insert('order', $dataorder);
-                    #input tabel pemesan
-                    $dataorder = [
-                        'nama' => $this->session->userdata('namapj'),
-                        'email' => $this->session->userdata('email_pemesan'),
-                        'tanggal_lahir' => $this->session->userdata('ttl_pj'),
-                        'hp' => $this->session->userdata('hp_pj')
-                    ];
-                    $this->db->insert('pemesan', $dataorder);
+                    
+                    #input tabel pemesan (JIKA flag bukan cicilan)
+                    if($this->db->get_where('pemesan', ['email' => $this->session->userdata('email_pemesan')])->result_array() == null){
+                        $dataorder = [
+                            'nama' => $this->session->userdata('namapj'),
+                            'email' => $this->session->userdata('email_pemesan'),
+                            'tanggal_lahir' => $this->session->userdata('ttl_pj'),
+                            'hp' => $this->session->userdata('hp_pj')
+                        ];
+                        $this->db->insert('pemesan', $dataorder);    
+                    }
+                    
                     #input tabel peserta
                     for ($i = 0; $i < intval($this->session->userdata('jmlh_psrta')); $i++) {
                         $datapeserta = [
@@ -246,6 +251,7 @@ class mp extends CI_Controller
                 $this->form_validation->set_rules('hp_pj', 'No Hp Penanggung Jawab', 'required|trim');
                 $this->form_validation->set_rules('paket_pilihan', 'Paket Pilihan', 'required|trim');
                 $this->form_validation->set_rules('jmlh_pserta', 'Jumlah Peserta', 'required|trim');
+                $this->session->set_userdata('flag','cekemail');
                 $flag = 'cekemail';
             }
             ### Tombol Bayar Cicilan
@@ -254,6 +260,7 @@ class mp extends CI_Controller
                 $this->form_validation->set_rules('pembayaran', 'Pembayaran', 'required|trim');
                 $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
                 $this->form_validation->set_rules('paket_pilihan', 'Paket Pilihan', 'required|trim');
+                $this->session->set_userdata('flag','cicilan');
                 $flag = 'cicilan';
             }
             // input salah
@@ -285,7 +292,7 @@ class mp extends CI_Controller
                 $this->session->set_userdata('jmlh_psrta', $loop);
 
                 ### Bila email BELUM terdaftar di table ORDER
-                if ($stat_email == Null and $flag == 'cekemail') {
+                if ($stat_email == Null or $flag == 'cekemail') {
                     $data = [
                         'pembayaran' => $this->input->post('pembayaran'),
                         'email' => htmlspecialchars($this->input->post('email', true)),
@@ -417,10 +424,10 @@ class mp extends CI_Controller
         if ($_GET['e'] != 'table') {
             $data = ['pj' => $this->db->get_where('pemesan', ['email' => base64_decode($_GET['e'])])->result_array()];
 
-            $this->load->view('vmanagementpembayaran\penanggungjwb', $data);
+            $this->load->view('vmanagementpembayaran/penanggungjwb', $data);
         } else {
             $data = ['pj' => $this->db->get('pemesan')->result_array()];
-            $this->load->view('vmanagementpembayaran\penanggungjwb', $data);
+            $this->load->view('vmanagementpembayaran/penanggungjwb', $data);
         }
     }
     public function editpemesan()
@@ -434,7 +441,7 @@ class mp extends CI_Controller
                 $data = ['pj' => $this->db->get_where('pemesan', ['email' => ($this->input->post('email'))])->result_array()];
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role = "alert">Input salah, cek kembali data yang diinput</div>');
 
-                $this->load->view('vmanagementpembayaran\penanggungjwb', $data);
+                $this->load->view('vmanagementpembayaran/penanggungjwb', $data);
             } else {
                 $data1 = [
                     'nama' => htmlspecialchars($this->input->post('namapj', true)),
@@ -447,11 +454,11 @@ class mp extends CI_Controller
                 $data = ['pj' => $this->db->get_where('pemesan', ['email' => ($this->input->post('email'))])->result_array()];
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role = "alert">Data Penanggung jawab berhasil di Update</div>');
 
-                $this->load->view('vmanagementpembayaran\penanggungjwb', $data);
+                $this->load->view('vmanagementpembayaran/penanggungjwb', $data);
             }
         } else {
             $data = ['pj' => $this->db->get_where('pemesan', ['email' => base64_decode($_GET['e'])])->result_array()];
-            $this->load->view('vmanagementpembayaran\editpj', $data);
+            $this->load->view('vmanagementpembayaran/editpj', $data);
         }
     }
     public function topoption()

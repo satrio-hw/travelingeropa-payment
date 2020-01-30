@@ -1,5 +1,5 @@
 <?php
-class cindex extends CI_Controller
+class Cindex extends CI_Controller
 {
     public function __construct()
     {
@@ -100,6 +100,7 @@ class cindex extends CI_Controller
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Pastikan data yang anda masukan sama persis dengan data yang anda input pertama (cek inbox email anda untuk info lebih lanjut)</div>');
                     $this->load->view('addpj');
                 } else {
+                    #pemesan belum terdaftar
                     if ($newemail == 1) {
                         $this->session->set_userdata('sendto', $this->input->post('email', true));
                         $this->session->set_userdata('namapenyetor', $this->input->post('nama'));
@@ -107,8 +108,17 @@ class cindex extends CI_Controller
                         $this->session->set_userdata('hppenyetor', $this->input->post('hp'));
                         $this->session->set_userdata('notif', 'userbaru');
                         redirect(base_url('mailer'));
+                        
+                    #pemesan sudah terdaftar, melakukan order baru
                     } else {
-                        redirect(base_url('cindex/addpjtodb'));
+                        $datapaket = [
+                                        'listpaket' => $this->db->get('paket')->result_array(),
+                                        'nama' => $this->input->post('nama'),
+                                        'email' => $this->input->post('email', true),
+                                        'ttl' => $this->input->post('tanggal_lahir'),
+                                        'hp' => $this->input->post('hp')
+                                    ];
+                         $this->load->view("dp", $datapaket);
                     }
                 }
             }

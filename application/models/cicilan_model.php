@@ -1,5 +1,5 @@
 <?php
-class cicilan_model extends CI_Model
+class Cicilan_model extends CI_Model
 {
     public function getCicilanByIdOrder($id_order)
     {

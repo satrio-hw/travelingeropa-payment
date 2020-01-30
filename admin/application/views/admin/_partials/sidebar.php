@@ -1,9 +1,9 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href=<?= base_url('cmanagementpembayaran/mp'); ?>>
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href=<?= site_url('cmanagementpembayaran/mp'); ?>>
         <div class="sidebar-brand-icon">
-            <img src="<?= base_url('assets'); ?> /img/logo.png" alt="" height=70 width=225 />
+            <img src="<?= base_url('assets/img/logo.png'); ?>" alt="" height=70 width=225 />
         </div>
     </a>
 
@@ -16,7 +16,7 @@
     } else {
         echo '<li class="nav-item">';
     }  ?>
-    <a class="nav-link" href=<?= base_url('cmanagementpembayaran/mp'); ?>>
+    <a class="nav-link" href=<?= site_url('cmanagementpembayaran/mp'); ?>>
         <i class="fas fa-file-invoice-dollar"></i>
         <span>Data Pembayaran</span></a>
     </li>
@@ -28,7 +28,7 @@
     } else {
         echo '<li class="nav-item">';
     }  ?>
-    <a class="nav-link" href=<?= base_url('cpaket/paket'); ?>>
+    <a class="nav-link" href=<?= site_url('cpaket/paket'); ?>>
         <i class="fas fa-cube"></i>
         <span>Paket</span></a>
     </li>
@@ -40,7 +40,7 @@
     } else {
         echo '<li class="nav-item">';
     }  ?>
-    <a class="nav-link" href=<?= base_url('corder/order'); ?>>
+    <a class="nav-link" href=<?= site_url('corder/order'); ?>>
         <i class="fas fa-users"></i>
         <span>Manag. Order</span></a>
     </li>
@@ -52,7 +52,7 @@
     } else {
         echo '<li class="nav-item">';
     }  ?>
-    <a class="nav-link" href=<?= base_url('cadmin/admin'); ?>>
+    <a class="nav-link" href=<?= site_url('cadmin/admin'); ?>>
         <i class="fas fa-id-badge"></i>
         <span>Manag. Admin</span></a>
     </li>

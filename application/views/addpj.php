@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>traveling eropa </title>
-  <meta charset="utf-8" />
+  
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- css -->
   <link href=<?= base_url("assets/css/bootstrap.min.css") ?> rel="stylesheet" media="screen">
@@ -17,22 +17,20 @@
     Author URL: https://bootstrapmade.com
   ======================================================= -->
 </head>
+<body>
+  <!-- intro area -->
+
+  <div id="intro">
+
+    <div class="intro-text">
+      <div class="container">
+        <div class="row">
 
 
-</div>
+          <div class="col-md-12">
 
-<!-- intro area -->
-<div id="intro">
-
-  <div class="intro-text">
-    <div class="container">
-      <div class="row">
-
-
-        <div class="col-md-12">
-
-          <div class="brand">
-            <h1><a href=<?= base_url('maincontrol') ?>>TRAVELING EROPA</a>
+            <div class="brand">
+              <h1><a onclick="return confirm('Kembali ke halaman pertama?')" href='https://travelingeropapay.com'><img src="<?= base_url('assets/img/logo_ori.png'); ?>" width=300 height=120/> </a>
               <div class="line-spacer"></div>
               <p><span> R E G I S T E R </span></p>
           </div>
@@ -65,7 +63,8 @@
         <form action="<?= base_url('cindex/addpj') ?>" method="post">
           <div class="row form-group">
             <div class="col-md-12">
-              <label for="fullname">Nama Penanggung Jawab/Penyetor</label>
+              <label for="fullname">Nama Penanggung Jawab/Penyetor</label><br>
+              <sub><font color='red'>*Perhatikan tanda baca, spasi dan huruf kapital !</font></sub>
               <input type="text" name="nama" id="nama" class="form-control">
             </div>
 

@@ -14,12 +14,12 @@ class Login extends CI_Controller
         // jika form login disubmit
         if ($this->input->post()) {
             if ($this->m_login->doLogin()) {
-                redirect(base_url('cmanagementpembayaran/mp'));
+                redirect(site_url('cmanagementpembayaran/mp'));
             }
         }
 
         // tampilkan halaman login
-        $this->load->view("admin/Login.php");
+        $this->load->view("admin/login");
     }
 
     public function logout()

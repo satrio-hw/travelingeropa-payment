@@ -1,5 +1,5 @@
 <?php
-class index_model extends CI_Model
+class Index_model extends CI_Model
 {
     public function doLogin()
     {

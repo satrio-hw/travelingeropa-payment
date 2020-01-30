@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <?php $this->load->view("admin/_partials/head.php"); ?>
     <style>
@@ -68,7 +68,7 @@
                         <div class="card-header py-3 addnew">
                             <!-- <a href="<?php #echo site_url('corder/order/add') 
                                             ?>"><i class="fas fa-user-plus"></i></a><br> -->
-                            <a href="<?= base_url('cpeserta/peserta'); ?>"><i class="fas fa-list"></i>Lihat Semua Peserta</a>
+                            <a href="<?= site_url('cpeserta/peserta'); ?>"><i class="fas fa-list"></i>Lihat Semua Peserta</a>
                         </div>
                         <div class="navbar-text">
                         </div>
@@ -100,7 +100,7 @@
                                                 </td>
                                                 <td>
                                                     <font color='black'>
-                                                        <a href="<?php echo site_url('cpeserta/peserta/berorder/') ?>?id=<?= $ord->id_order ?>">List Peserta</a>
+                                                        <a href="<?php echo site_url('cpeserta/peserta/berorder/') ?>?id=<?= $ord->id_order ?>&pkt=<?= $ord->id_paket ?>&mail=<?= $ord->email_pemesan ?>">List Peserta</a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -145,7 +145,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href=<?= base_url('admin/Login/logout'); ?>>Logout</a>
+                    <a class="btn btn-primary" href=<?= site_url('admin/Login/logout'); ?>>Logout</a>
                 </div>
             </div>
         </div>

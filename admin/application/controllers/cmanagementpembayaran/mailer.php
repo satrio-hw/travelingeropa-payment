@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-class mailer extends CI_Controller
+class Mailer extends CI_Controller
 {
 
     public function __construct()
@@ -19,6 +19,7 @@ class mailer extends CI_Controller
     {
         $the_mailer = $this->db->get_where('admin', ['role' => 'mailer'])->row_array();
         #var_dump($the_mailer);
+        echo !extension_loaded('openssl')?"Not Available":"Available";
 
         // PHPMailer object
         $response = false;
@@ -26,15 +27,23 @@ class mailer extends CI_Controller
 
 
         // SMTP configuration
+        #$mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        #$mail->SMTPDebug = 2; //Alternative to above constant
         $mail->isSMTP();
-        $mail->Host     = 'smtp.' . $the_mailer['alamat']; //sesuaikan sesuai nama domain hosting/server yang digunakan
+        $mail->Host     = $the_mailer['alamat']; //sesuaikan sesuai nama domain hosting/server yang digunakan
         $mail->SMTPAuth = true;
+        $mail->SMTPAutoTLS = false;
         $mail->Username = $the_mailer['email']; // user email
         $mail->Password = base64_decode($the_mailer['password']); // password email
         $mail->SMTPSecure = 'ssl';
+        #$mail->SMTPSecure = 'tls';
         $mail->Port     = 465;
+        #$mail->Port = 25;
+        
+        $mail->setFrom('te-info@travelingeropapay.com', ''); // user email
 
-        $mail->setFrom($the_mailer['email'], ''); // user email
+        $mail->From = "te-info@travelingeropapay.com";
+        $mail->FromName = "Travelingeropa Info Pembayaran"; 
         $mail->addReplyTo('', ''); //user email
 
         // Add a recipient
@@ -84,7 +93,8 @@ class mailer extends CI_Controller
             $this->session->unset_userdata('idorder');
             $this->session->unset_userdata('type');
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role = "alert">Mail Error :' . $mail->ErrorInfo . '<br>1. Cek kembali pengatran mailer<br>2. pastikan hanya 1 mailer pada tabel admin</div>');
-            redirect(base_url('cmanagementpembayaran/mp'));
+            echo $mail->ErrorInfo;
+            redirect(site_url('cmanagementpembayaran/mp'));
         } else {
             if ($this->session->userdata('konfirmasi') == 'pending') {
                 $data = ['konfirmasi' => $this->session->userdata('req')];
@@ -101,7 +111,7 @@ class mailer extends CI_Controller
             $this->session->unset_userdata('idorder');
             $this->session->unset_userdata('type');
             $this->session->set_flashdata('message', '<div class="alert alert-success" role = "alert">Email Berhasil dikirimkan</div>');
-            redirect(base_url('cmanagementpembayaran/mp'));
+            redirect(site_url('cmanagementpembayaran/mp'));
         }
     }
 }

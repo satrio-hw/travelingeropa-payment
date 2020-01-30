@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <?php $this->load->view("admin/_partials/head.php") ?>
     <style>
@@ -106,9 +106,9 @@
                     ?>
                     <!-- DataTales Example -->
                     <?php if ($this->session->userdata('emailterdaftar') != null) { ?>
-                        <form method="post" action=<?= base_url("cmanagementpembayaran/mp/cicilan") ?> enctype='multipart/form-data'>
+                        <form method="post" action=<?= site_url("cmanagementpembayaran/mp/cicilan") ?> enctype='multipart/form-data'>
                         <?php } else { ?>
-                            <form method="post" action=<?= base_url("cmanagementpembayaran/mp/addpembayaran") ?> enctype='multipart/form-data'>
+                            <form method="post" action=<?= site_url("cmanagementpembayaran/mp/addpembayaran") ?> enctype='multipart/form-data'>
                             <?php } ?>
                             <div class="slider-content">
                                 <!-- Inner row 1 -->

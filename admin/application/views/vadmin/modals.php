@@ -1,4 +1,4 @@
-<form method="POST" action=<?= base_url("cadmin/admin/deletelist") ?>>
+<form method="POST" action=<?= site_url("cadmin/admin/deletelist") ?>>
     <!--MODAL START-->
     <div class="modal fade" id="displayModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">

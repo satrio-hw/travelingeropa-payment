@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-    <meta charset="utf-8">
+    
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>Travelingeropapay Admin - Login</title>
 
     <!-- Custom fonts for this template-->
     <link href="<?= base_url("assets/"); ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -33,17 +33,20 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6"></div>
                             <div class="p-5">
 
                                 <div class="wrap_view">
                                     <?= $this->session->flashdata('message'); ?>
                                     <h1 class="heading text-center text-uppercase mb-5"> Login Admin Traveling Eropa </h1>
                                     <div class="inner_sec">
-
+                                        
+                                        <p align='center'>
+                                         <img src='<?= base_url('assets/img/logo_block.png');?>' height=100>  
+                                        </p>
+                                         
                                         <div class="row">
                                             <div class="col-12 col-md-5 mx-auto mt-5">
-                                                <form action="<?= site_url('admin/login') ?>" method="POST">
+                                                <form action="<?= site_url('auth') #site_url('admin/login') ?>" method="POST">
                                                     <div class="form-group">
                                                         <label for="email">Email</label>
                                                         <input type="text" class="form-control" name="email" placeholder="Enter Your Email" required />

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <?php $this->load->view("admin/_partials/head.php");  ?>
 
@@ -33,7 +33,7 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Konfigurasi Sender: <?= $mailer; ?></h1> <?= $this->session->flashdata('message'); ?>
                     <?= validation_errors(); ?>
-                    <form method="POST" action=<?= base_url("cadmin/admin/editsender") ?>>
+                    <form method="POST" action=<?= site_url("cadmin/admin/editsender") ?>>
                         <!-- DataTales Example -->
                         <div class="slider-content">
                             <!-- Inner row 1 -->
@@ -45,8 +45,8 @@
                                         <?= form_error('emailsender', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                     <div class="form-group">
-                                        <label><b>SMTP</b></label>
-                                        <input type="text" class="form-control" name="smtpmailer" id="smtpmailer" placeholder="SMTP Sender" required />
+                                        <label><b>SMTP</b> <sub><font color='red'>*pengaturan SMPTP untuk email DNS @travelingeropapay.com</font></sub></label>
+                                        <input type="text" class="form-control" name="smtpmailer" id="smtpmailer" placeholder="SMTP Sender" value="leafeon.rapidplex.com" required />
                                         <?= form_error('smtpmailer', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                     <div class="form-group">
@@ -107,7 +107,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href=<?= base_url('admin/Login/logout'); ?>>Logout</a>
+                    <a class="btn btn-primary" href=<?= site_url('admin/Login/logout'); ?>>Logout</a>
                 </div>
             </div>
         </div>
